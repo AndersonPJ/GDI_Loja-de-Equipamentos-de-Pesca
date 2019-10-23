@@ -11,11 +11,11 @@ public class Pessoa {
     private Date data_nascimento;
 
     public Pessoa (int id_pessoa, String cpf, String nome, String sexo, Date data_nascimento) {
-        this.id_pessoa = id_pessoa;
-        this.cpf = cpf;
-        this.nome = nome;
-        this.sexo = sexo;
-        this.data_nascimento = data_nascimento;
+        this.setId_pessoa(id_pessoa);
+        this.setCpf(cpf);
+        this.setNome(nome);
+        this.setSexo(sexo);
+        this.setData_nascimento(data_nascimento);
     }
     
     public int getId_pessoa() {
