@@ -1,14 +1,11 @@
 package Controller;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 
-/**
- *
- * @author AndersonPJ
- */
 public class ConnectionDataBase {
-	public static Connection getConnection () {
+    public static Connection getConnection () {
         Connection myConnection = null;
         
         // Configuracao do servidor
@@ -31,5 +28,5 @@ public class ConnectionDataBase {
         }
         
         return myConnection;
-	}
+    }
 }
