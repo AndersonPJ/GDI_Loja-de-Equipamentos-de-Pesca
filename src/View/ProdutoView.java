@@ -1,25 +1,42 @@
 package View;
 
 import Controller.ConnectionDataBase;
+import Model.Produto;
+import Model.ProdutoTableModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 public class ProdutoView extends javax.swing.JFrame {
     private Connection connectionDB;
+    private MaskFormatter maskPreco;
+    private ProdutoTableModel ProdutoTM;
     
     /**
      * Creates new form ProdutoView
      */
     public ProdutoView() {
         this.connectionDB = ConnectionDataBase.getConnection();
+        
+        try {
+            this.maskPreco = new MaskFormatter("R$ ###.###,##");
+        } catch (ParseException ex) {
+            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //ProdutoTM = new ProdutoTableModel();
+        
         initComponents();
         setLocationRelativeTo(null);
+        setJTableProduto();
     }
 
     /**
@@ -42,14 +59,14 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextFieldCategoria = new javax.swing.JTextField();
         jTextFieldFabricante = new javax.swing.JTextField();
         jComboBoxID_Estoquista = new javax.swing.JComboBox<>();
-        jTextFieldPreco_de_Compra = new javax.swing.JTextField();
         jLabelPreco_de_Venda = new javax.swing.JLabel();
-        jTextFieldPreco_de_Venda = new javax.swing.JTextField();
         jButtonUpload_Imagem = new javax.swing.JButton();
         jButtonConsultar = new javax.swing.JButton();
         jButtonInserir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableProduto = new javax.swing.JTable();
+        jFormattedTextFieldPreco_de_Compra = new JFormattedTextField (this.maskPreco);
+        jFormattedTextFieldPreco_de_Venda = new JFormattedTextField (this.maskPreco);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,8 +96,13 @@ public class ProdutoView extends javax.swing.JFrame {
         jButtonConsultar.setText("Consultar");
 
         jButtonInserir.setText("Inserir");
+        jButtonInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInserirActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -96,7 +118,7 @@ public class ProdutoView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableProduto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,11 +128,11 @@ public class ProdutoView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(42, 42, 42)
                         .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -125,17 +147,17 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addComponent(jLabelPreco_de_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldFabricante)
                     .addComponent(jComboBoxID_Estoquista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldPreco_de_Compra)
                     .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldPreco_de_Venda)
-                    .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldPreco_de_Compra)
+                    .addComponent(jFormattedTextFieldPreco_de_Venda))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,27 +181,32 @@ public class ProdutoView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelPreco_de_Compra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPreco_de_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFormattedTextFieldPreco_de_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabelPreco_de_Venda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addComponent(jFormattedTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 309, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonConsultar)
                         .addComponent(jButtonUpload_Imagem))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonInserir)
-                    .addComponent(jButtonConsultar))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(jButtonInserir))
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxID_EstoquistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxID_EstoquistaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxID_EstoquistaActionPerformed
+
+    private void jButtonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirActionPerformed
+        
+        System.out.println(jTextFieldCodigo.getText());
+    }//GEN-LAST:event_jButtonInserirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +243,18 @@ public class ProdutoView extends javax.swing.JFrame {
         });
     }
     
+    // Inicializando dados na ProdutoView
+    public void setJTableProduto () {
+        ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getProdutos());
+        ArrayList <Produto> listaDeProdutos = ProdutoTM.getListaDeProdutos();
+        
+        for (int i = 0 ; i < listaDeProdutos.size() ; i ++) {
+            System.out.println(listaDeProdutos.get(i));
+        }
+        
+        jTableProduto.setModel(ProdutoTM);
+    }
+        
     //Seleciona apenas ID's que já existem no DB
     public String[] getID_Estoquista () {
         String [] listID_Estoquista = null;
@@ -249,6 +288,8 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInserir;
     private javax.swing.JButton jButtonUpload_Imagem;
     private javax.swing.JComboBox<String> jComboBoxID_Estoquista;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPreco_de_Compra;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPreco_de_Venda;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelFabricante;
@@ -257,12 +298,10 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPreco_de_Compra;
     private javax.swing.JLabel jLabelPreco_de_Venda;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableProduto;
     private javax.swing.JTextField jTextFieldCategoria;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldFabricante;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldPreco_de_Compra;
-    private javax.swing.JTextField jTextFieldPreco_de_Venda;
     // End of variables declaration//GEN-END:variables
 }
