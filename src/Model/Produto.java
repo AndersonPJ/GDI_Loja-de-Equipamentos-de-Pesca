@@ -3,11 +3,12 @@ package Model;
 import java.awt.image.BufferedImage;
 
 public class Produto {
-    private int codigo, preco_de_compra, preco_de_venda, id_estoquista;
+    private int codigo, id_estoquista;
+    private double preco_de_compra, preco_de_venda;
     private String nome, categoria, fabricante;
     private BufferedImage imagem;
 
-    public Produto (int codigo, String nome, String categoria, String fabricante, int preco_de_compra, int preco_de_venda, int id_estoquista, BufferedImage imagem) {
+    public Produto (int codigo, String nome, String categoria, String fabricante, double preco_de_compra, double preco_de_venda, int id_estoquista, BufferedImage imagem) {
         this.setCodigo(codigo);
         this.setNome(nome);
         this.setCategoria(categoria);
@@ -19,46 +20,46 @@ public class Produto {
     }
     
     public int getCodigo() {
-        return codigo;
+        return this.codigo;
     }
 
-    public int getPreco_de_compra() {
-        return preco_de_compra;
+    public double getPreco_de_compra() {
+        return this.preco_de_compra;
     }
 
-    public int getPreco_de_venda() {
-        return preco_de_venda;
+    public double getPreco_de_venda() {
+        return this.preco_de_venda;
     }
 
     public int getId_estoquista() {
-        return id_estoquista;
+        return this.id_estoquista;
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getCategoria() {
-        return categoria;
+        return this.categoria;
     }
 
     public String getFabricante() {
-        return fabricante;
+        return this.fabricante;
     }
 
     public BufferedImage getImagem() {
-        return imagem;
+        return this.imagem;
     }
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
-    public void setPreco_de_compra(int preco_de_compra) {
+    public void setPreco_de_compra(double preco_de_compra) {
         this.preco_de_compra = preco_de_compra;
     }
 
-    public void setPreco_de_venda(int preco_de_venda) {
+    public void setPreco_de_venda(double preco_de_venda) {
         this.preco_de_venda = preco_de_venda;
     }
 
