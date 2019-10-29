@@ -51,8 +51,8 @@
                   <Component id="jComboBoxID_Estoquista" max="32767" attributes="0"/>
                   <Component id="jLabelPreco_de_Venda" max="32767" attributes="0"/>
                   <Component id="jButtonUpload_Imagem" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jFormattedTextFieldPreco_de_Compra" max="32767" attributes="0"/>
-                  <Component id="jFormattedTextFieldPreco_de_Venda" max="32767" attributes="0"/>
+                  <Component id="jTextFieldPreco_de_Compra" max="32767" attributes="0"/>
+                  <Component id="jTextFieldPreco_de_Venda" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
           </Group>
@@ -86,14 +86,14 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelPreco_de_Compra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldPreco_de_Compra" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldPreco_de_Compra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jLabelPreco_de_Venda" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jFormattedTextFieldPreco_de_Venda" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="309" max="32767" attributes="0"/>
+                      <Component id="jTextFieldPreco_de_Venda" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="637" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -150,7 +150,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxID_Estoquista">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(getID_Estoquista())" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(Controller.ProdutoControl.getID_Estoquista())" type="code"/>
         </Property>
       </Properties>
       <Events>
@@ -249,15 +249,9 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPreco_de_Compra">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField (this.maskPreco);"/>
-      </AuxValues>
+    <Component class="javax.swing.JTextField" name="jTextFieldPreco_de_Compra">
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldPreco_de_Venda">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField (this.maskPreco);"/>
-      </AuxValues>
+    <Component class="javax.swing.JTextField" name="jTextFieldPreco_de_Venda">
     </Component>
   </SubComponents>
 </Form>

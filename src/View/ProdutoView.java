@@ -13,27 +13,16 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class ProdutoView extends javax.swing.JFrame {
-    private Connection connectionDB;
-    private MaskFormatter maskPreco;
     private ProdutoTableModel ProdutoTM;
     
     /**
      * Creates new form ProdutoView
      */
     public ProdutoView() {
-        this.connectionDB = ConnectionDataBase.getConnection();
-        
-        try {
-            this.maskPreco = new MaskFormatter("R$ ###.###,##");
-        } catch (ParseException ex) {
-            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        //ProdutoTM = new ProdutoTableModel();
-        
         initComponents();
         setLocationRelativeTo(null);
         setJTableProduto();
@@ -65,8 +54,8 @@ public class ProdutoView extends javax.swing.JFrame {
         jButtonInserir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProduto = new javax.swing.JTable();
-        jFormattedTextFieldPreco_de_Compra = new JFormattedTextField (this.maskPreco);
-        jFormattedTextFieldPreco_de_Venda = new JFormattedTextField (this.maskPreco);
+        jTextFieldPreco_de_Compra = new javax.swing.JTextField();
+        jTextFieldPreco_de_Venda = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +71,7 @@ public class ProdutoView extends javax.swing.JFrame {
 
         jLabelPreco_de_Compra.setText("Preço de Compra:");
 
-        jComboBoxID_Estoquista.setModel(new javax.swing.DefaultComboBoxModel<>(getID_Estoquista()));
+        jComboBoxID_Estoquista.setModel(new javax.swing.DefaultComboBoxModel<>(Controller.ProdutoControl.getID_Estoquista()));
         jComboBoxID_Estoquista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxID_EstoquistaActionPerformed(evt);
@@ -149,8 +138,8 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addComponent(jComboBoxID_Estoquista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextFieldPreco_de_Compra)
-                    .addComponent(jFormattedTextFieldPreco_de_Venda))
+                    .addComponent(jTextFieldPreco_de_Compra)
+                    .addComponent(jTextFieldPreco_de_Venda))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -181,13 +170,13 @@ public class ProdutoView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelPreco_de_Compra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldPreco_de_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldPreco_de_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jLabelPreco_de_Venda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 309, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -204,8 +193,18 @@ public class ProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxID_EstoquistaActionPerformed
 
     private void jButtonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirActionPerformed
+        /*if (jTextFieldCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!");
+        } else {
+            try { p.setCodigo(Integer.parseInt(jTextFieldCodigo.getText())); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); }
         
-        System.out.println(jTextFieldCodigo.getText());
+        }*/
+        
+        //try { p.setCodigo(Integer.parseInt(jTextFieldNome.getText())); }
+        //catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); }
+        
+        jTextFieldCodigo.setText("");
     }//GEN-LAST:event_jButtonInserirActionPerformed
 
     /**
@@ -247,40 +246,7 @@ public class ProdutoView extends javax.swing.JFrame {
     public void setJTableProduto () {
         ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getProdutos());
         ArrayList <Produto> listaDeProdutos = ProdutoTM.getListaDeProdutos();
-        
-        for (int i = 0 ; i < listaDeProdutos.size() ; i ++) {
-            System.out.println(listaDeProdutos.get(i));
-        }
-        
         jTableProduto.setModel(ProdutoTM);
-    }
-        
-    //Seleciona apenas ID's que já existem no DB
-    public String[] getID_Estoquista () {
-        String [] listID_Estoquista = null;
-        try {
-            Statement myStatement = this.connectionDB.createStatement();
-            ResultSet myResult = myStatement.executeQuery("SELECT DISTINCT id_estoquista FROM PRODUTO ORDER BY id_estoquista ASC");
-            ArrayList <Integer> ArrayListID_Estoquista = new ArrayList ();
-            
-            while (myResult.next()) {
-                ArrayListID_Estoquista.add(myResult.getInt("id_estoquista"));
-            }
-
-            listID_Estoquista = new String [ArrayListID_Estoquista.size()];
-            int count = 0;
-            
-            Iterator<Integer> i = ArrayListID_Estoquista.iterator();
-            
-            while(i.hasNext()) {
-                listID_Estoquista[count] = i.next().toString();
-                count++;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return listID_Estoquista;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -288,8 +254,6 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInserir;
     private javax.swing.JButton jButtonUpload_Imagem;
     private javax.swing.JComboBox<String> jComboBoxID_Estoquista;
-    private javax.swing.JFormattedTextField jFormattedTextFieldPreco_de_Compra;
-    private javax.swing.JFormattedTextField jFormattedTextFieldPreco_de_Venda;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelFabricante;
@@ -303,5 +267,7 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldFabricante;
     private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldPreco_de_Compra;
+    private javax.swing.JTextField jTextFieldPreco_de_Venda;
     // End of variables declaration//GEN-END:variables
 }

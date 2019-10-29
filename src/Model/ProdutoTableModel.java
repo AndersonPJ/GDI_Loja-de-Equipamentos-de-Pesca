@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -44,6 +45,7 @@ public class ProdutoTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Produto p = listaDeProdutos.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("R$ 0.00");
         
         switch (columnIndex) {
             case 0: return p.getCodigo();
@@ -51,8 +53,8 @@ public class ProdutoTableModel extends AbstractTableModel {
             case 2: return p.getCategoria();
             case 3: return p.getId_estoquista();
             case 4: return p.getFabricante();
-            case 5: return p.getPreco_de_compra();
-            case 6: return p.getPreco_de_venda();
+            case 5: return df.format(p.getPreco_de_compra());
+            case 6: return df.format(p.getPreco_de_venda());
             default: throw new IndexOutOfBoundsException();
         }
     }
