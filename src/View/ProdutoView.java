@@ -190,6 +190,8 @@ public class ProdutoView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!"); Exception = true;
         } else if (jTextFieldNome.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "O campo 'Nome' não pode ser nulo!"); Exception = true;
+        } else if (jComboBoxID_Estoquista.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Nenhum ID Estoquista selecionado!"); Exception = true;
         } else if (jTextFieldPreco_de_Compra.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "O campo 'Preço de Compra' não pode ser nulo!"); Exception = true;
         } else if (jTextFieldPreco_de_Venda.getText().equals("")) {

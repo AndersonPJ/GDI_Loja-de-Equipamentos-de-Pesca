@@ -91,7 +91,7 @@ public class ProdutoControl {
         String [] listID_Estoquista = null;
         try {
             Statement myStatement = myConnection.createStatement();
-            ResultSet myResult = myStatement.executeQuery("SELECT DISTINCT id_estoquista FROM PRODUTO ORDER BY id_estoquista ASC");
+            ResultSet myResult = myStatement.executeQuery("SELECT id_estoquista FROM ESTOQUISTA");
             ArrayList <Integer> ArrayListID_Estoquista = new ArrayList ();
             
             while (myResult.next()) {
