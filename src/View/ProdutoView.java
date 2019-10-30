@@ -1,20 +1,9 @@
 package View;
 
-import Controller.ConnectionDataBase;
 import Model.Produto;
 import Model.ProdutoTableModel;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 
 public class ProdutoView extends javax.swing.JFrame {
     private ProdutoTableModel ProdutoTM;
@@ -192,19 +181,66 @@ public class ProdutoView extends javax.swing.JFrame {
     private void jComboBoxID_EstoquistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxID_EstoquistaActionPerformed
     }//GEN-LAST:event_jComboBoxID_EstoquistaActionPerformed
 
+    // Botão Inserir
     private void jButtonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirActionPerformed
-        /*if (jTextFieldCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!");
+        boolean Exception = false;
+        double preco_de_compra = 0, preco_de_venda = 0;
+        
+        if (jTextFieldCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!"); Exception = true;
+        } else if (jTextFieldNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Nome' não pode ser nulo!"); Exception = true;
+        } else if (jTextFieldPreco_de_Compra.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Preço de Compra' não pode ser nulo!"); Exception = true;
+        } else if (jTextFieldPreco_de_Venda.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Preço de Venda' não pode ser nulo!"); Exception = true;
         } else {
-            try { p.setCodigo(Integer.parseInt(jTextFieldCodigo.getText())); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); }
+            try { Integer.parseInt(jTextFieldCodigo.getText()); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); Exception = true; }
+            
+            try { preco_de_compra = Double.parseDouble(jTextFieldPreco_de_Compra.getText()); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Compra.getText() + "' não é um Double!"); Exception = true; }
+            
+            try { preco_de_venda = Double.parseDouble(jTextFieldPreco_de_Venda.getText()); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Venda.getText() + "' não é um Double!"); Exception = true; }
+            
+            if (!Exception) {
+                if (preco_de_venda < preco_de_compra) {
+                    JOptionPane.showMessageDialog(this, "Preço de Venda não pode ser menor que Preço de Compra");
+                    Exception = true;
+                }
+            }
+        }
         
-        }*/
-        
-        //try { p.setCodigo(Integer.parseInt(jTextFieldNome.getText())); }
-        //catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); }
+        if (!Exception) {
+            boolean[] options = new boolean [2];
+            
+            if (jTextFieldCategoria.getText().equals(""))       { options [0] = false; } else { options [0] = true; }
+            if (jTextFieldFabricante.getText().equals(""))      { options [1] = false; } else { options [1] = true; }
+            
+            if (Controller.ProdutoControl.existeProduto(Integer.parseInt(jTextFieldCodigo.getText()))) {
+                JOptionPane.showMessageDialog(this, "Código do produto já cadastrado no servidor!");
+            } else {
+                Controller.ProdutoControl.InserirProduto(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
+                                                                     jTextFieldNome.getText(),
+                                                                     jTextFieldCategoria.getText(),
+                                                                     jTextFieldFabricante.getText(),
+                                                                     Double.parseDouble(jTextFieldPreco_de_Compra.getText()),
+                                                                     Double.parseDouble(jTextFieldPreco_de_Venda.getText()),
+                                                                     Integer.parseInt(jComboBoxID_Estoquista.getSelectedItem().toString()),
+                                                                     null),
+                                                                     options);
+            }
+        }
         
         jTextFieldCodigo.setText("");
+        jTextFieldNome.setText("");
+        jTextFieldCategoria.setText("");
+        jTextFieldFabricante.setText("");
+        jTextFieldPreco_de_Compra.setText("");
+        jTextFieldPreco_de_Venda.setText("");
+        
+        setJTableProduto();
     }//GEN-LAST:event_jButtonInserirActionPerformed
 
     /**

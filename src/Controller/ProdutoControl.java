@@ -43,22 +43,43 @@ public class ProdutoControl {
     }
     
     // Insere dados na DataBase
-    public static void InserirProduto (Produto p) {
+    public static void InserirProduto (Produto p, boolean[] options) {
+        int counter = 0;
         String sql =    "INSERT INTO\n" +
-                            "PRODUTO (codigo, nome, categoria, fabricante, preco_de_compra, preco_de_venda, id_estoquista)\n" +
-                        "VALUES\n" +
-                            "(?, ?, ?, ?, ?, ?, ?)";
+                            "PRODUTO (codigo, nome";
+        
+        if (options [0]) { sql += ", categoria";  counter ++; }
+        if (options [1]) { sql += ", fabricante"; counter ++; }
+        
+        sql +=  ", preco_de_compra, preco_de_venda, id_estoquista)\n" +
+                    "VALUES\n" +
+                "(?, ?";
+        for (int i = 0 ; i < counter ; i ++) {
+            sql += ", ?";
+        }
+        
+        sql += ", ?, ?, ?)";
+
         try {
             PreparedStatement myStatement = myConnection.prepareStatement(sql);
+            counter = 3;
+            myStatement.setInt                          (1, p.getCodigo());
+            myStatement.setString                       (2, p.getNome());
+            if (options [0]) { myStatement.setString    (counter, p.getCategoria());        counter ++; }
+            if (options [1]) { myStatement.setString    (counter, p.getFabricante());       counter ++; }
+            myStatement.setDouble                       (counter, p.getPreco_de_compra());  counter ++;
+            myStatement.setDouble                       (counter, p.getPreco_de_venda());   counter ++;
+            myStatement.setInt                          (counter, p.getId_estoquista());
             
-            myStatement.setInt      (1, p.getCodigo());
-            myStatement.setString   (2, p.getNome());
-            myStatement.setString   (3, p.getCategoria());
-            myStatement.setString   (4, p.getFabricante());            
-            myStatement.setDouble   (5, p.getPreco_de_compra());
-            myStatement.setDouble   (6, p.getPreco_de_venda());
-            myStatement.setInt      (7, p.getId_estoquista());
-
+            System.out.println(sql);
+            System.out.println("Código: " +         p.getCodigo());
+            System.out.println("Nome: " +           p.getNome());
+            System.out.println("Categoria: " +      p.getCategoria());
+            System.out.println("ID: " +             p.getId_estoquista());
+            System.out.println("Fabricante: " +     p.getFabricante());
+            System.out.println("PC: " +             p.getPreco_de_compra());
+            System.out.println("PV: " +             p.getPreco_de_venda());
+            
             myStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,5 +112,25 @@ public class ProdutoControl {
         }
         
         return listID_Estoquista;
+    }
+    
+    // Verifica se Código já existe na DataBase
+    public static boolean existeProduto (int codigo) {
+        boolean isExist = false;
+        String sql = "SELECT codigo FROM PRODUTO where codigo = " + codigo + "";
+        
+        try {
+            Statement myStatement = myConnection.createStatement();
+            ResultSet myResult = myStatement.executeQuery(sql);
+            
+            while(myResult.next()) {
+                isExist = true;
+                break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return isExist;
     }
 }
