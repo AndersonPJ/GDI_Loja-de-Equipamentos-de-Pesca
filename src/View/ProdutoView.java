@@ -361,7 +361,7 @@ public class ProdutoView extends javax.swing.JFrame {
         fileC.addChoosableFileFilter(filter);
         fileC.setAcceptAllFileFilterUsed(false);
         fileC.setDialogType(JFileChooser.OPEN_DIALOG);
-        fileC.setCurrentDirectory(new File("/Imagens"));
+        fileC.setCurrentDirectory(new File("./Imagens/"));
         fileC.showOpenDialog(this);
         file = fileC.getSelectedFile();
         ImageIcon icon = new ImageIcon(file.getAbsolutePath());
