@@ -1,14 +1,16 @@
 package Model;
 
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.sql.Blob;
 
 public class Produto {
     private int codigo, id_estoquista;
     private double preco_de_compra, preco_de_venda;
     private String nome, categoria, fabricante;
-    private BufferedImage imagem;
+    private Blob imagem;
 
-    public Produto (int codigo, String nome, String categoria, String fabricante, double preco_de_compra, double preco_de_venda, int id_estoquista, BufferedImage imagem) {
+    public Produto (int codigo, String nome, String categoria, String fabricante, double preco_de_compra, double preco_de_venda, int id_estoquista, Blob imagem) {
         this.setCodigo(codigo);
         this.setNome(nome);
         this.setCategoria(categoria);
@@ -47,7 +49,7 @@ public class Produto {
         return this.fabricante;
     }
 
-    public BufferedImage getImagem() {
+    public Blob getImagem() {
         return this.imagem;
     }
 
@@ -79,7 +81,7 @@ public class Produto {
         this.fabricante = fabricante;
     }
 
-    public void setImagem(BufferedImage imagem) {
+    public void setImagem(Blob imagem) {
         this.imagem = imagem;
     }
 }

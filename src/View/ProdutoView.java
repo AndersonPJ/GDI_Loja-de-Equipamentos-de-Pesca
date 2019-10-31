@@ -2,11 +2,27 @@ package View;
 
 import Model.Produto;
 import Model.ProdutoTableModel;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ProdutoView extends javax.swing.JFrame {
     private ProdutoTableModel ProdutoTM;
+    private File file;
+    private BufferedImage foto;
     
     /**
      * Creates new form ProdutoView
@@ -45,6 +61,7 @@ public class ProdutoView extends javax.swing.JFrame {
         jTableProduto = new javax.swing.JTable();
         jTextFieldPreco_de_Compra = new javax.swing.JTextField();
         jTextFieldPreco_de_Venda = new javax.swing.JTextField();
+        jLabelImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,8 +87,18 @@ public class ProdutoView extends javax.swing.JFrame {
         jLabelPreco_de_Venda.setText("Preço de Venda");
 
         jButtonUpload_Imagem.setText("Upload Imagem");
+        jButtonUpload_Imagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpload_ImagemActionPerformed(evt);
+            }
+        });
 
         jButtonConsultar.setText("Consultar");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarActionPerformed(evt);
+            }
+        });
 
         jButtonInserir.setText("Inserir");
         jButtonInserir.addActionListener(new java.awt.event.ActionListener() {
@@ -96,23 +123,28 @@ public class ProdutoView extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTableProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProduto);
+
+        jLabelImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
+                        .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldNome)
                     .addComponent(jTextFieldCodigo)
@@ -126,16 +158,18 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addComponent(jTextFieldFabricante)
                     .addComponent(jComboBoxID_Estoquista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldPreco_de_Compra)
-                    .addComponent(jTextFieldPreco_de_Venda))
+                    .addComponent(jTextFieldPreco_de_Venda)
+                    .addComponent(jButtonConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonInserir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,24 +197,25 @@ public class ProdutoView extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabelPreco_de_Venda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE))
+                        .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonInserir)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonConsultar)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonUpload_Imagem))
-                    .addComponent(jButtonInserir))
-                .addGap(31, 31, 31))
+                    .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    // ComboBox com ID's dos Estoquistas cadastrados no BD
     private void jComboBoxID_EstoquistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxID_EstoquistaActionPerformed
     }//GEN-LAST:event_jComboBoxID_EstoquistaActionPerformed
-
     // Botão Inserir
     private void jButtonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirActionPerformed
         boolean Exception = false;
@@ -215,10 +250,22 @@ public class ProdutoView extends javax.swing.JFrame {
         }
         
         if (!Exception) {
-            boolean[] options = new boolean [2];
+            InputStream myInputStream = null;
+            boolean[] options = new boolean [3];
             
             if (jTextFieldCategoria.getText().equals(""))       { options [0] = false; } else { options [0] = true; }
             if (jTextFieldFabricante.getText().equals(""))      { options [1] = false; } else { options [1] = true; }
+            if (file == null)                                   { options [2] = false; } else {
+                    ByteArrayOutputStream myByteArrayOutputStream;
+                try {
+                    myByteArrayOutputStream = new ByteArrayOutputStream();
+                    ImageIO.write(foto, "jpg", myByteArrayOutputStream);
+                    myInputStream = new ByteArrayInputStream(myByteArrayOutputStream.toByteArray());
+                    options [2] = true;
+                } catch (IOException ex) {
+                    Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             
             if (Controller.ProdutoControl.existeProduto(Integer.parseInt(jTextFieldCodigo.getText()))) {
                 JOptionPane.showMessageDialog(this, "Código do produto já cadastrado no servidor!");
@@ -231,6 +278,7 @@ public class ProdutoView extends javax.swing.JFrame {
                                                                      Double.parseDouble(jTextFieldPreco_de_Venda.getText()),
                                                                      Integer.parseInt(jComboBoxID_Estoquista.getSelectedItem().toString()),
                                                                      null),
+                                                                     myInputStream,
                                                                      options);
             }
         }
@@ -241,10 +289,30 @@ public class ProdutoView extends javax.swing.JFrame {
         jTextFieldFabricante.setText("");
         jTextFieldPreco_de_Compra.setText("");
         jTextFieldPreco_de_Venda.setText("");
+        jLabelImagem.setIcon(null);
+        file = null;
         
         setJTableProduto();
     }//GEN-LAST:event_jButtonInserirActionPerformed
-
+    // Botão Consultar
+    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+//
+//
+//
+    }//GEN-LAST:event_jButtonConsultarActionPerformed
+    // Ler o 'file' e coloca em um 'BufferedImage' (Isso será escrito em um InputStream que é convertido em um BLOB antes de enviar ao BD)
+    private void jButtonUpload_ImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpload_ImagemActionPerformed
+        selectImagem();
+        try {
+            foto = ImageIO.read(file);
+	} catch (IOException ex) {
+            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonUpload_ImagemActionPerformed
+    // Seleção de linha da tabela
+    private void jTableProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutoMouseClicked
+        printImagemproduto(jTableProduto.getSelectedRow());
+    }//GEN-LAST:event_jTableProdutoMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -279,14 +347,38 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         });
     }
-    
     // Inicializando dados na ProdutoView
     public void setJTableProduto () {
         ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getProdutos());
         ArrayList <Produto> listaDeProdutos = ProdutoTM.getListaDeProdutos();
         jTableProduto.setModel(ProdutoTM);
     }
-    
+    // Seleciona arquivo e coloca em 'file' e exibe arquivo selecionado
+    public void selectImagem () {
+        file = null;
+        JFileChooser fileC = new JFileChooser();
+        FileNameExtensionFilter filter =    new FileNameExtensionFilter("Imagens em JPEG", "jpg");
+        fileC.addChoosableFileFilter(filter);
+        fileC.setAcceptAllFileFilterUsed(false);
+        fileC.setDialogType(JFileChooser.OPEN_DIALOG);
+        fileC.setCurrentDirectory(new File("/Imagens"));
+        fileC.showOpenDialog(this);
+        file = fileC.getSelectedFile();
+        ImageIcon icon = new ImageIcon(file.getAbsolutePath());
+        icon.setImage(icon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
+        jLabelImagem.setIcon(icon);
+    }
+    // Mostra imagem do produto
+    public void printImagemproduto (int index) {
+        try {
+            Blob blob = ProdutoTM.getListaDeProdutos().get(index).getImagem();
+            ImageIcon icon = new ImageIcon(blob.getBytes(1, (int) blob.length()));
+            icon.setImage(icon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
+            jLabelImagem.setIcon(icon);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonInserir;
@@ -296,6 +388,7 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JLabel jLabelFabricante;
     private javax.swing.JLabel jLabelID_Estoquista;
+    private javax.swing.JLabel jLabelImagem;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelPreco_de_Compra;
     private javax.swing.JLabel jLabelPreco_de_Venda;

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Produto;
 import View.ProdutoView;
+import java.io.InputStream;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,15 +27,17 @@ public class ProdutoControl {
             ResultSet myResult = myStatement.executeQuery(sql);
             
             while(myResult.next()) {
-                listaDeProdutos.add(new Produto( myResult.getInt    ("codigo"),
+                listaDeProdutos.add(new Produto(myResult.getInt     ("codigo"),
                                                 myResult.getString  ("nome"),
                                                 myResult.getString  ("categoria"),
                                                 myResult.getString  ("fabricante"),
                                                 myResult.getDouble  ("preco_de_compra"),
                                                 myResult.getDouble  ("preco_de_venda"),
                                                 myResult.getInt     ("id_estoquista"),
-                                                null));
+                                                myResult.getBlob    ("imagem")));
             }
+            myResult.close();
+            myStatement.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,7 +46,7 @@ public class ProdutoControl {
     }
     
     // Insere dados na DataBase
-    public static void InserirProduto (Produto p, boolean[] options) {
+    public static void InserirProduto (Produto p, InputStream myInputStream, boolean[] options) {
         int counter = 0;
         String sql =    "INSERT INTO\n" +
                             "PRODUTO (codigo, nome";
@@ -51,8 +54,11 @@ public class ProdutoControl {
         if (options [0]) { sql += ", categoria";  counter ++; }
         if (options [1]) { sql += ", fabricante"; counter ++; }
         
-        sql +=  ", preco_de_compra, preco_de_venda, id_estoquista)\n" +
-                    "VALUES\n" +
+        sql +=  ", preco_de_compra, preco_de_venda, id_estoquista";
+        
+        if (options [2]) { sql += ", imagem)\n"; counter ++; } else { sql += ")\n"; } 
+            
+        sql += "VALUES\n" +
                 "(?, ?";
         for (int i = 0 ; i < counter ; i ++) {
             sql += ", ?";
@@ -69,18 +75,11 @@ public class ProdutoControl {
             if (options [1]) { myStatement.setString    (counter, p.getFabricante());       counter ++; }
             myStatement.setDouble                       (counter, p.getPreco_de_compra());  counter ++;
             myStatement.setDouble                       (counter, p.getPreco_de_venda());   counter ++;
-            myStatement.setInt                          (counter, p.getId_estoquista());
-            
-            System.out.println(sql);
-            System.out.println("Código: " +         p.getCodigo());
-            System.out.println("Nome: " +           p.getNome());
-            System.out.println("Categoria: " +      p.getCategoria());
-            System.out.println("ID: " +             p.getId_estoquista());
-            System.out.println("Fabricante: " +     p.getFabricante());
-            System.out.println("PC: " +             p.getPreco_de_compra());
-            System.out.println("PV: " +             p.getPreco_de_venda());
+            myStatement.setInt                          (counter, p.getId_estoquista());    counter ++;
+            if (options [2]) { myStatement.setBlob      (counter, myInputStream); }
             
             myStatement.executeUpdate();
+            myStatement.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,6 +106,8 @@ public class ProdutoControl {
                 listID_Estoquista[count] = i.next().toString();
                 count++;
             }
+            myResult.close();
+            myStatement.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,6 +128,8 @@ public class ProdutoControl {
                 isExist = true;
                 break;
             }
+            myResult.close();
+            myStatement.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
