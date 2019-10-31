@@ -26,33 +26,41 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" pref="971" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+                  <Component id="jScrollPane1" pref="961" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabelImagem" min="-2" pref="533" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonAtualizar_Tabela" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="jButtonInserir_Produto" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="jButtonUpload_Imagem" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jTextFieldNome" max="32767" attributes="0"/>
-                  <Component id="jTextFieldCodigo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextFieldCategoria" max="32767" attributes="0"/>
-                  <Component id="jLabelCodigo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabelNome" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabelCategoria" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabelID_Estoquista" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabelFabricante" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabelPreco_de_Compra" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextFieldFabricante" max="32767" attributes="0"/>
-                  <Component id="jComboBoxID_Estoquista" max="32767" attributes="0"/>
-                  <Component id="jLabelPreco_de_Venda" max="32767" attributes="0"/>
-                  <Component id="jTextFieldPreco_de_Compra" max="32767" attributes="0"/>
-                  <Component id="jTextFieldPreco_de_Venda" max="32767" attributes="0"/>
-                  <Component id="jButtonConsultar" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButtonInserir" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButtonUpload_Imagem" max="32767" attributes="0"/>
+              <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTextFieldNome" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCodigo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCategoria" max="32767" attributes="0"/>
+                          <Component id="jLabelCodigo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabelNome" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabelCategoria" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabelID_Estoquista" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabelFabricante" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabelPreco_de_Compra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldFabricante" max="32767" attributes="0"/>
+                          <Component id="jComboBoxID_Estoquista" max="32767" attributes="0"/>
+                          <Component id="jLabelPreco_de_Venda" max="32767" attributes="0"/>
+                          <Component id="jTextFieldPreco_de_Compra" max="32767" attributes="0"/>
+                          <Component id="jTextFieldPreco_de_Venda" max="32767" attributes="0"/>
+                          <Component id="jButtonRemover_Produto" alignment="0" pref="115" max="32767" attributes="0"/>
+                          <Component id="jButtonAtualizar_Produto" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jButtonConsultar_Produto" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jButtonSair" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
           </Group>
@@ -96,14 +104,25 @@
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jButtonInserir" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelImagem" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonInserir_Produto" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonRemover_Produto" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonConsultar" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonAtualizar_Tabela" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAtualizar_Produto" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonUpload_Imagem" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonConsultar_Produto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonUpload_Imagem" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSair" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabelImagem" min="-2" pref="300" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
@@ -175,20 +194,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpload_ImagemActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonConsultar">
+    <Component class="javax.swing.JButton" name="jButtonConsultar_Produto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Consultar"/>
+        <Property name="text" type="java.lang.String" value="Consultar Produto"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsultarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsultar_ProdutoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonInserir">
+    <Component class="javax.swing.JButton" name="jButtonInserir_Produto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Inserir"/>
+        <Property name="text" type="java.lang.String" value="Inserir Produto"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInserirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInserir_ProdutoActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -271,6 +290,29 @@
             <LineBorder/>
           </Border>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonAtualizar_Tabela">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atualizar Tabela"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAtualizar_TabelaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonRemover_Produto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Remover Produto"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonAtualizar_Produto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atualizar Produto"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSair">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sair"/>
       </Properties>
     </Component>
   </SubComponents>

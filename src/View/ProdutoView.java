@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,7 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ProdutoView extends javax.swing.JFrame {
     private ProdutoTableModel ProdutoTM;
     private File file;
-    private BufferedImage foto;
+    private BufferedImage photo;
     
     /**
      * Creates new form ProdutoView
@@ -55,13 +54,17 @@ public class ProdutoView extends javax.swing.JFrame {
         jComboBoxID_Estoquista = new javax.swing.JComboBox<>();
         jLabelPreco_de_Venda = new javax.swing.JLabel();
         jButtonUpload_Imagem = new javax.swing.JButton();
-        jButtonConsultar = new javax.swing.JButton();
-        jButtonInserir = new javax.swing.JButton();
+        jButtonConsultar_Produto = new javax.swing.JButton();
+        jButtonInserir_Produto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProduto = new javax.swing.JTable();
         jTextFieldPreco_de_Compra = new javax.swing.JTextField();
         jTextFieldPreco_de_Venda = new javax.swing.JTextField();
         jLabelImagem = new javax.swing.JLabel();
+        jButtonAtualizar_Tabela = new javax.swing.JButton();
+        jButtonRemover_Produto = new javax.swing.JButton();
+        jButtonAtualizar_Produto = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,17 +96,17 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         });
 
-        jButtonConsultar.setText("Consultar");
-        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultar_Produto.setText("Consultar Produto");
+        jButtonConsultar_Produto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConsultarActionPerformed(evt);
+                jButtonConsultar_ProdutoActionPerformed(evt);
             }
         });
 
-        jButtonInserir.setText("Inserir");
-        jButtonInserir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInserir_Produto.setText("Inserir Produto");
+        jButtonInserir_Produto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInserirActionPerformed(evt);
+                jButtonInserir_ProdutoActionPerformed(evt);
             }
         });
 
@@ -132,6 +135,19 @@ public class ProdutoView extends javax.swing.JFrame {
 
         jLabelImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButtonAtualizar_Tabela.setText("Atualizar Tabela");
+        jButtonAtualizar_Tabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizar_TabelaActionPerformed(evt);
+            }
+        });
+
+        jButtonRemover_Produto.setText("Remover Produto");
+
+        jButtonAtualizar_Produto.setText("Atualizar Produto");
+
+        jButtonSair.setText("Sair");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,30 +155,36 @@ public class ProdutoView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
-                        .addGap(41, 41, 41))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldNome)
-                    .addComponent(jTextFieldCodigo)
-                    .addComponent(jTextFieldCategoria)
-                    .addComponent(jLabelCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelID_Estoquista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelPreco_de_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldFabricante)
-                    .addComponent(jComboBoxID_Estoquista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldPreco_de_Compra)
-                    .addComponent(jTextFieldPreco_de_Venda)
-                    .addComponent(jButtonConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonInserir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAtualizar_Tabela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonInserir_Produto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldNome)
+                            .addComponent(jTextFieldCodigo)
+                            .addComponent(jTextFieldCategoria)
+                            .addComponent(jLabelCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelID_Estoquista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelPreco_de_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldFabricante)
+                            .addComponent(jComboBoxID_Estoquista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldPreco_de_Compra)
+                            .addComponent(jTextFieldPreco_de_Venda)
+                            .addComponent(jButtonRemover_Produto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                            .addComponent(jButtonAtualizar_Produto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonConsultar_Produto))
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -201,13 +223,21 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonInserir)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonInserir_Produto)
+                            .addComponent(jButtonRemover_Produto))
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonConsultar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAtualizar_Tabela)
+                            .addComponent(jButtonAtualizar_Produto))
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonUpload_Imagem))
-                    .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonUpload_Imagem)
+                            .addComponent(jButtonConsultar_Produto))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSair)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -217,39 +247,39 @@ public class ProdutoView extends javax.swing.JFrame {
     private void jComboBoxID_EstoquistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxID_EstoquistaActionPerformed
     }//GEN-LAST:event_jComboBoxID_EstoquistaActionPerformed
     // Botão Inserir
-    private void jButtonInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirActionPerformed
-        boolean Exception = false;
+    private void jButtonInserir_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserir_ProdutoActionPerformed
+        boolean exception = false;
         double preco_de_compra = 0, preco_de_venda = 0;
         
         if (jTextFieldCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!"); Exception = true;
+            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!"); exception = true;
         } else if (jTextFieldNome.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Nome' não pode ser nulo!"); Exception = true;
+            JOptionPane.showMessageDialog(this, "O campo 'Nome' não pode ser nulo!"); exception = true;
         } else if (jComboBoxID_Estoquista.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Nenhum ID Estoquista selecionado!"); Exception = true;
+            JOptionPane.showMessageDialog(this, "Nenhum ID Estoquista selecionado!"); exception = true;
         } else if (jTextFieldPreco_de_Compra.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Preço de Compra' não pode ser nulo!"); Exception = true;
+            JOptionPane.showMessageDialog(this, "O campo 'Preço de Compra' não pode ser nulo!"); exception = true;
         } else if (jTextFieldPreco_de_Venda.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Preço de Venda' não pode ser nulo!"); Exception = true;
+            JOptionPane.showMessageDialog(this, "O campo 'Preço de Venda' não pode ser nulo!"); exception = true;
         } else {
             try { Integer.parseInt(jTextFieldCodigo.getText()); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); Exception = true; }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); exception = true; }
             
             try { preco_de_compra = Double.parseDouble(jTextFieldPreco_de_Compra.getText()); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Compra.getText() + "' não é um Double!"); Exception = true; }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Compra.getText() + "' não é um Double!"); exception = true; }
             
             try { preco_de_venda = Double.parseDouble(jTextFieldPreco_de_Venda.getText()); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Venda.getText() + "' não é um Double!"); Exception = true; }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Venda.getText() + "' não é um Double!"); exception = true; }
             
-            if (!Exception) {
+            if (!exception) {
                 if (preco_de_venda < preco_de_compra) {
                     JOptionPane.showMessageDialog(this, "Preço de Venda não pode ser menor que Preço de Compra");
-                    Exception = true;
+                    exception = true;
                 }
             }
         }
         
-        if (!Exception) {
+        if (!exception) {
             InputStream myInputStream = null;
             boolean[] options = new boolean [3];
             
@@ -259,7 +289,7 @@ public class ProdutoView extends javax.swing.JFrame {
                     ByteArrayOutputStream myByteArrayOutputStream;
                 try {
                     myByteArrayOutputStream = new ByteArrayOutputStream();
-                    ImageIO.write(foto, "jpg", myByteArrayOutputStream);
+                    ImageIO.write(photo, "jpg", myByteArrayOutputStream);
                     myInputStream = new ByteArrayInputStream(myByteArrayOutputStream.toByteArray());
                     options [2] = true;
                 } catch (IOException ex) {
@@ -267,10 +297,10 @@ public class ProdutoView extends javax.swing.JFrame {
                 }
             }
             
-            if (Controller.ProdutoControl.existeProduto(Integer.parseInt(jTextFieldCodigo.getText()))) {
+            if (Controller.ProdutoControl.existProduct(Integer.parseInt(jTextFieldCodigo.getText()))) {
                 JOptionPane.showMessageDialog(this, "Código do produto já cadastrado no servidor!");
             } else {
-                Controller.ProdutoControl.InserirProduto(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
+                Controller.ProdutoControl.insertProduct(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
                                                                      jTextFieldNome.getText(),
                                                                      jTextFieldCategoria.getText(),
                                                                      jTextFieldFabricante.getText(),
@@ -293,26 +323,34 @@ public class ProdutoView extends javax.swing.JFrame {
         file = null;
         
         setJTableProduto();
-    }//GEN-LAST:event_jButtonInserirActionPerformed
+    }//GEN-LAST:event_jButtonInserir_ProdutoActionPerformed
     // Botão Consultar
-    private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+    private void jButtonConsultar_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultar_ProdutoActionPerformed
 //
 //
 //
-    }//GEN-LAST:event_jButtonConsultarActionPerformed
+    }//GEN-LAST:event_jButtonConsultar_ProdutoActionPerformed
     // Ler o 'file' e coloca em um 'BufferedImage' (Isso será escrito em um InputStream que é convertido em um BLOB antes de enviar ao BD)
     private void jButtonUpload_ImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpload_ImagemActionPerformed
-        selectImagem();
-        try {
-            foto = ImageIO.read(file);
-	} catch (IOException ex) {
-            Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+        file = null;
+        jLabelImagem.setIcon(null);
+        selectImage();
+        if (file != null) {
+            try {
+                photo = ImageIO.read(file);
+            } catch (IOException ex) {
+                Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonUpload_ImagemActionPerformed
     // Seleção de linha da tabela
     private void jTableProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutoMouseClicked
-        printImagemproduto(jTableProduto.getSelectedRow());
+        printImageProduct(jTableProduto.getSelectedRow());
     }//GEN-LAST:event_jTableProdutoMouseClicked
+
+    private void jButtonAtualizar_TabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizar_TabelaActionPerformed
+        setJTableProduto();
+    }//GEN-LAST:event_jButtonAtualizar_TabelaActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -350,38 +388,45 @@ public class ProdutoView extends javax.swing.JFrame {
     // Inicializando dados na ProdutoView
     public void setJTableProduto () {
         ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getProdutos());
-        ArrayList <Produto> listaDeProdutos = ProdutoTM.getListaDeProdutos();
         jTableProduto.setModel(ProdutoTM);
     }
     // Seleciona arquivo e coloca em 'file' e exibe arquivo selecionado
-    public void selectImagem () {
-        file = null;
-        JFileChooser fileC = new JFileChooser();
+    public void selectImage () {
+        JFileChooser myJFileChooser = new JFileChooser();
         FileNameExtensionFilter filter =    new FileNameExtensionFilter("Imagens em JPEG", "jpg");
-        fileC.addChoosableFileFilter(filter);
-        fileC.setAcceptAllFileFilterUsed(false);
-        fileC.setDialogType(JFileChooser.OPEN_DIALOG);
-        fileC.setCurrentDirectory(new File("./Imagens/"));
-        fileC.showOpenDialog(this);
-        file = fileC.getSelectedFile();
-        ImageIcon icon = new ImageIcon(file.getAbsolutePath());
-        icon.setImage(icon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
-        jLabelImagem.setIcon(icon);
+        myJFileChooser.addChoosableFileFilter(filter);
+        myJFileChooser.setAcceptAllFileFilterUsed(false);
+        myJFileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        myJFileChooser.setCurrentDirectory(new File("./Imagens/"));
+        myJFileChooser.showOpenDialog(this);
+        file = myJFileChooser.getSelectedFile();
+        if (file != null) {
+            ImageIcon myImageIcon = new ImageIcon(file.getAbsolutePath());
+            myImageIcon.setImage(myImageIcon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
+            jLabelImagem.setIcon(myImageIcon);
+        }
     }
     // Mostra imagem do produto
-    public void printImagemproduto (int index) {
+    public void printImageProduct (int index) {
         try {
-            Blob blob = ProdutoTM.getListaDeProdutos().get(index).getImagem();
-            ImageIcon icon = new ImageIcon(blob.getBytes(1, (int) blob.length()));
-            icon.setImage(icon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
-            jLabelImagem.setIcon(icon);
+            Blob myblob = ProdutoTM.getListOfProducts().get(index).getImagem();
+            if (myblob == null) { jLabelImagem.setIcon (null); }
+            else {
+                ImageIcon myImageIcon = new ImageIcon(myblob.getBytes(1, (int) myblob.length()));
+                myImageIcon.setImage(myImageIcon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
+                jLabelImagem.setIcon(myImageIcon);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonConsultar;
-    private javax.swing.JButton jButtonInserir;
+    private javax.swing.JButton jButtonAtualizar_Produto;
+    private javax.swing.JButton jButtonAtualizar_Tabela;
+    private javax.swing.JButton jButtonConsultar_Produto;
+    private javax.swing.JButton jButtonInserir_Produto;
+    private javax.swing.JButton jButtonRemover_Produto;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonUpload_Imagem;
     private javax.swing.JComboBox<String> jComboBoxID_Estoquista;
     private javax.swing.JLabel jLabelCategoria;

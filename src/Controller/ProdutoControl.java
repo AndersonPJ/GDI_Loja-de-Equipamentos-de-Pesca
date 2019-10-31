@@ -19,7 +19,7 @@ public class ProdutoControl {
     
     // Lista dados da DataBase
     public static ArrayList<Produto> getProdutos () {
-        ArrayList<Produto> listaDeProdutos = new ArrayList();
+        ArrayList<Produto> listOfProducts = new ArrayList();
         String sql = "SELECT * FROM PRODUTO";
         
         try {
@@ -27,7 +27,7 @@ public class ProdutoControl {
             ResultSet myResult = myStatement.executeQuery(sql);
             
             while(myResult.next()) {
-                listaDeProdutos.add(new Produto(myResult.getInt     ("codigo"),
+                listOfProducts.add(new Produto(myResult.getInt     ("codigo"),
                                                 myResult.getString  ("nome"),
                                                 myResult.getString  ("categoria"),
                                                 myResult.getString  ("fabricante"),
@@ -42,11 +42,11 @@ public class ProdutoControl {
             Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return listaDeProdutos;
+        return listOfProducts;
     }
     
     // Insere dados na DataBase
-    public static void InserirProduto (Produto p, InputStream myInputStream, boolean[] options) {
+    public static void insertProduct (Produto p, InputStream myInputStream, boolean[] options) {
         int counter = 0;
         String sql =    "INSERT INTO\n" +
                             "PRODUTO (codigo, nome";
@@ -91,16 +91,16 @@ public class ProdutoControl {
         try {
             Statement myStatement = myConnection.createStatement();
             ResultSet myResult = myStatement.executeQuery("SELECT id_estoquista FROM ESTOQUISTA");
-            ArrayList <Integer> ArrayListID_Estoquista = new ArrayList ();
+            ArrayList <Integer> arrayListID_Estoquista = new ArrayList ();
             
             while (myResult.next()) {
-                ArrayListID_Estoquista.add(myResult.getInt("id_estoquista"));
+                arrayListID_Estoquista.add(myResult.getInt("id_estoquista"));
             }
 
-            listID_Estoquista = new String [ArrayListID_Estoquista.size()];
+            listID_Estoquista = new String [arrayListID_Estoquista.size()];
             int count = 0;
             
-            Iterator<Integer> i = ArrayListID_Estoquista.iterator();
+            Iterator<Integer> i = arrayListID_Estoquista.iterator();
             
             while(i.hasNext()) {
                 listID_Estoquista[count] = i.next().toString();
@@ -116,7 +116,7 @@ public class ProdutoControl {
     }
     
     // Verifica se Código já existe na DataBase
-    public static boolean existeProduto (int codigo) {
+    public static boolean existProduct (int codigo) {
         boolean isExist = false;
         String sql = "SELECT codigo FROM PRODUTO where codigo = " + codigo + "";
         

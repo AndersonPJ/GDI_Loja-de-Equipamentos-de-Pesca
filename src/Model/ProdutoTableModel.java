@@ -5,46 +5,46 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class ProdutoTableModel extends AbstractTableModel {
-    private ArrayList <Produto> listaDeProdutos;
-    private String[] colunas = new String [] {"Código", "Nome", "Categoria", "ID Estoquista", "Fabricante", "Preço de Compra", "Preço de Venda"};
+    private ArrayList <Produto> listOfProducts;
+    private String[] columns = new String [] {"Código", "Nome", "Categoria", "ID Estoquista", "Fabricante", "Preço de Compra", "Preço de Venda"};
 
     public ProdutoTableModel() {
-        this.listaDeProdutos = new ArrayList ();
+        this.listOfProducts = new ArrayList ();
     }
 
-    public ProdutoTableModel(ArrayList<Produto> listaDeProdutos) {
-        this.listaDeProdutos = listaDeProdutos;
+    public ProdutoTableModel(ArrayList<Produto> listOfProducts) {
+        this.listOfProducts = listOfProducts;
     }
 
-    public ArrayList<Produto> getListaDeProdutos() {
-        return this.listaDeProdutos;
+    public ArrayList<Produto> getListOfProducts() {
+        return this.listOfProducts;
     }
 
-    public String[] getColunas() {
-        return this.colunas;
+    public String[] getColumns() {
+        return this.columns;
     }
 
-    public void setListaDeProdutos(ArrayList<Produto> listaDeProdutos) {
-        this.listaDeProdutos = listaDeProdutos;
+    public void setListOfProducts(ArrayList<Produto> listOfProducts) {
+        this.listOfProducts = listOfProducts;
     }
 
-    public void setColunas(String[] colunas) {
-        this.colunas = colunas;
+    public void setColumns(String[] columns) {
+        this.columns = columns;
     }
     
     @Override
     public int getRowCount() {
-        return this.listaDeProdutos.size();
+        return this.listOfProducts.size();
     }
 
     @Override
     public int getColumnCount() {
-        return this.colunas.length;
+        return this.columns.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Produto p = listaDeProdutos.get(rowIndex);
+        Produto p = listOfProducts.get(rowIndex);
         DecimalFormat df = new DecimalFormat("R$ 0.00");
         
         switch (columnIndex) {
@@ -61,6 +61,6 @@ public class ProdutoTableModel extends AbstractTableModel {
     
     @Override
     public String getColumnName(int columnIndex) {
-        return this.colunas[columnIndex];
+        return this.columns[columnIndex];
     } 
 }
