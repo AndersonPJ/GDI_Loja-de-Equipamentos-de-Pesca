@@ -2,8 +2,8 @@ package Controller;
 
 import Model.Produto;
 import View.ProdutoView;
-import java.io.InputStream;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ public class ProdutoControl {
     private static Connection myConnection = ConnectionDataBase.getConnection();
     
     // Lista dados da DataBase
-    public static ArrayList<Produto> getProdutos () {
+    public static ArrayList<Produto> getProducts () {
         ArrayList<Produto> listOfProducts = new ArrayList();
         String sql = "SELECT * FROM PRODUTO";
         
@@ -27,7 +27,7 @@ public class ProdutoControl {
             ResultSet myResult = myStatement.executeQuery(sql);
             
             while(myResult.next()) {
-                listOfProducts.add(new Produto(myResult.getInt     ("codigo"),
+                listOfProducts.add(new Produto(myResult.getInt      ("codigo"),
                                                 myResult.getString  ("nome"),
                                                 myResult.getString  ("categoria"),
                                                 myResult.getString  ("fabricante"),
@@ -36,6 +36,47 @@ public class ProdutoControl {
                                                 myResult.getInt     ("id_estoquista"),
                                                 myResult.getBlob    ("imagem")));
             }
+            
+            myResult.close();
+            myStatement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return listOfProducts;
+    }
+    
+    // Lista itens com atribudo especifico
+    public static ArrayList<Produto> getSpecificProducts (int index, Produto p) {
+        ArrayList<Produto> listOfProducts = new ArrayList();        
+        String sql = "SELECT * FROM PRODUTO WHERE ";
+        
+        switch (index) {
+            case 1: sql += "codigo = " +            p.getCodigo() + "";             break;
+            case 2: sql += "nome LIKE '" +          p.getNome() + "%'";             break;
+            case 3: sql += "categoria LIKE '" +     p.getCategoria() + "%'";        break;
+            case 4: sql += "fabricante LIKE '" +    p.getFabricante() + "%'";       break;
+            case 5: sql += "preco_de_compra = " +   p.getPreco_de_compra() + "";    break;
+            case 6: sql += "preco_de_venda = " +    p.getPreco_de_venda() + "";     break;
+            case 7: sql += "id_estoquista = " +     p.getId_estoquista() + "";      break;
+            default: throw new IndexOutOfBoundsException();                
+        }
+        
+        try {
+            Statement myStatement = myConnection.createStatement();
+            ResultSet myResult = myStatement.executeQuery(sql);
+            
+            while(myResult.next()) {
+                listOfProducts.add(new Produto(myResult.getInt      ("codigo"),
+                                                myResult.getString  ("nome"),
+                                                myResult.getString  ("categoria"),
+                                                myResult.getString  ("fabricante"),
+                                                myResult.getDouble  ("preco_de_compra"),
+                                                myResult.getDouble  ("preco_de_venda"),
+                                                myResult.getInt     ("id_estoquista"),
+                                                myResult.getBlob    ("imagem")));
+            }
+            
             myResult.close();
             myStatement.close();
         } catch (SQLException ex) {
@@ -49,7 +90,7 @@ public class ProdutoControl {
     public static void insertProduct (Produto p, InputStream myInputStream, boolean[] options) {
         int counter = 0;
         String sql =    "INSERT INTO\n" +
-                            "PRODUTO (codigo, nome";
+                        "PRODUTO (codigo, nome";
         
         if (options [0]) { sql += ", categoria";  counter ++; }
         if (options [1]) { sql += ", fabricante"; counter ++; }
@@ -77,6 +118,58 @@ public class ProdutoControl {
             myStatement.setDouble                       (counter, p.getPreco_de_venda());   counter ++;
             myStatement.setInt                          (counter, p.getId_estoquista());    counter ++;
             if (options [2]) { myStatement.setBlob      (counter, myInputStream); }
+            
+            myStatement.executeUpdate();
+            myStatement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // Atualiza dados na DataBase
+    public static void updateProduct (Produto p, InputStream myInputStream, boolean[] options) {
+        int counter = 0;
+        String sql =    "UPDATE PRODUTO\n" +
+                        "SET nome = ?";
+        if (options [0]) { sql += ", categoria = ?"; counter ++; }
+        if (options [1]) { sql += ", fabricante = ?"; counter ++; }
+        
+        sql += ", preco_de_compra = ?" +
+               ", preco_de_venda = ?" +
+               ", id_estoquista = ?";
+        
+        if (options [2]) { sql += ", imagem) = ?"; counter ++; }
+        
+        sql += "\nWHERE codigo = ?";
+        System.out.println(sql);
+        try {
+            PreparedStatement myStatement = myConnection.prepareStatement(sql);
+            counter = 2;
+            myStatement.setString                       (1, p.getNome());
+            if (options [0]) { myStatement.setString    (counter, p.getCategoria());        counter ++; }
+            if (options [1]) { myStatement.setString    (counter, p.getFabricante());       counter ++; }
+            myStatement.setDouble                       (counter, p.getPreco_de_compra());  counter ++;
+            myStatement.setDouble                       (counter, p.getPreco_de_venda());   counter ++;
+            myStatement.setInt                          (counter, p.getId_estoquista());    counter ++;
+            if (options [2]) { myStatement.setBlob      (counter, myInputStream);           counter ++; }
+            myStatement.setInt                          (counter, p.getCodigo());
+            
+            myStatement.executeUpdate();
+            myStatement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // Remover produto na DataBase
+    public static void removeProduct (int codigo) {
+        String sql = "DELETE FROM PRODUTO\n" + 
+                     "WHERE codigo = ?";
+        try {
+            PreparedStatement myStatement = myConnection.prepareStatement(sql);
+            myStatement.setInt(1, codigo);
+            
+            System.out.println(codigo);
             
             myStatement.executeUpdate();
             myStatement.close();

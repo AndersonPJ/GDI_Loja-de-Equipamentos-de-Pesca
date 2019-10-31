@@ -1,7 +1,5 @@
 package Model;
 
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
 import java.sql.Blob;
 
 public class Produto {

@@ -2,6 +2,7 @@ package View;
 
 import Model.Produto;
 import Model.ProdutoTableModel;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +23,8 @@ public class ProdutoView extends javax.swing.JFrame {
     private ProdutoTableModel ProdutoTM;
     private File file;
     private BufferedImage photo;
+    private boolean flagJRadioButton = false;
+    
     
     /**
      * Creates new form ProdutoView
@@ -41,6 +44,7 @@ public class ProdutoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabelCodigo = new javax.swing.JLabel();
         jLabelNome = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
@@ -65,6 +69,13 @@ public class ProdutoView extends javax.swing.JFrame {
         jButtonRemover_Produto = new javax.swing.JButton();
         jButtonAtualizar_Produto = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jRadioButtonCodigo = new javax.swing.JRadioButton();
+        jRadioButtonNome = new javax.swing.JRadioButton();
+        jRadioButtonCategoria = new javax.swing.JRadioButton();
+        jRadioButtonID_Estoquista = new javax.swing.JRadioButton();
+        jRadioButtonFabricante = new javax.swing.JRadioButton();
+        jRadioButtonPreco_de_Compra = new javax.swing.JRadioButton();
+        jRadioButtonPreco_de_Venda = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,10 +154,74 @@ public class ProdutoView extends javax.swing.JFrame {
         });
 
         jButtonRemover_Produto.setText("Remover Produto");
+        jButtonRemover_Produto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemover_ProdutoActionPerformed(evt);
+            }
+        });
 
         jButtonAtualizar_Produto.setText("Atualizar Produto");
+        jButtonAtualizar_Produto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizar_ProdutoActionPerformed(evt);
+            }
+        });
 
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonCodigo);
+        jRadioButtonCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonCodigoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonNome);
+        jRadioButtonNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNomeActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonCategoria);
+        jRadioButtonCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonCategoriaActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonID_Estoquista);
+        jRadioButtonID_Estoquista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonID_EstoquistaActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonFabricante);
+        jRadioButtonFabricante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonFabricanteActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonPreco_de_Compra);
+        jRadioButtonPreco_de_Compra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPreco_de_CompraActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButtonPreco_de_Venda);
+        jRadioButtonPreco_de_Venda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPreco_de_VendaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,32 +234,40 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAtualizar_Tabela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonInserir_Produto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonInserir_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUpload_Imagem, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAtualizar_Tabela, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldNome)
-                            .addComponent(jTextFieldCodigo)
-                            .addComponent(jTextFieldCategoria)
-                            .addComponent(jLabelCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelID_Estoquista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelPreco_de_Compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldFabricante)
-                            .addComponent(jComboBoxID_Estoquista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldPreco_de_Compra)
-                            .addComponent(jTextFieldPreco_de_Venda)
-                            .addComponent(jButtonRemover_Produto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(jButtonAtualizar_Produto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jButtonConsultar_Produto))
-                    .addComponent(jButtonSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButtonCodigo)
+                        .addComponent(jRadioButtonNome)
+                        .addComponent(jRadioButtonCategoria)
+                        .addComponent(jRadioButtonID_Estoquista, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jRadioButtonFabricante)
+                    .addComponent(jRadioButtonPreco_de_Compra)
+                    .addComponent(jRadioButtonPreco_de_Venda, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelID_Estoquista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelFabricante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelPreco_de_Compra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldFabricante, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxID_Estoquista, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelPreco_de_Venda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldPreco_de_Compra, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonRemover_Produto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAtualizar_Produto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonConsultar_Produto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -195,31 +278,46 @@ public class ProdutoView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonCodigo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonNome))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelCategoria)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonCategoria))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelID_Estoquista)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxID_Estoquista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxID_Estoquista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonID_Estoquista))
                         .addGap(10, 10, 10)
                         .addComponent(jLabelFabricante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonFabricante))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelPreco_de_Compra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPreco_de_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelPreco_de_Venda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPreco_de_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonPreco_de_Compra))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelPreco_de_Venda)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldPreco_de_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jRadioButtonPreco_de_Venda)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,56 +326,31 @@ public class ProdutoView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonInserir_Produto)
                             .addComponent(jButtonRemover_Produto))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAtualizar_Tabela)
                             .addComponent(jButtonAtualizar_Produto))
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonUpload_Imagem)
-                            .addComponent(jButtonConsultar_Produto))
-                        .addGap(18, 18, 18)
+                            .addComponent(jButtonConsultar_Produto)
+                            .addComponent(jButtonUpload_Imagem))
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonSair)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     // ComboBox com ID's dos Estoquistas cadastrados no BD
     private void jComboBoxID_EstoquistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxID_EstoquistaActionPerformed
     }//GEN-LAST:event_jComboBoxID_EstoquistaActionPerformed
+    
     // Botão Inserir
     private void jButtonInserir_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserir_ProdutoActionPerformed
-        boolean exception = false;
-        double preco_de_compra = 0, preco_de_venda = 0;
-        
-        if (jTextFieldCodigo.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!"); exception = true;
-        } else if (jTextFieldNome.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Nome' não pode ser nulo!"); exception = true;
-        } else if (jComboBoxID_Estoquista.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Nenhum ID Estoquista selecionado!"); exception = true;
-        } else if (jTextFieldPreco_de_Compra.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Preço de Compra' não pode ser nulo!"); exception = true;
-        } else if (jTextFieldPreco_de_Venda.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "O campo 'Preço de Venda' não pode ser nulo!"); exception = true;
-        } else {
-            try { Integer.parseInt(jTextFieldCodigo.getText()); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); exception = true; }
-            
-            try { preco_de_compra = Double.parseDouble(jTextFieldPreco_de_Compra.getText()); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Compra.getText() + "' não é um Double!"); exception = true; }
-            
-            try { preco_de_venda = Double.parseDouble(jTextFieldPreco_de_Venda.getText()); }
-            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Venda.getText() + "' não é um Double!"); exception = true; }
-            
-            if (!exception) {
-                if (preco_de_venda < preco_de_compra) {
-                    JOptionPane.showMessageDialog(this, "Preço de Venda não pode ser menor que Preço de Compra");
-                    exception = true;
-                }
-            }
-        }
+        setVisibleJRadioButton(false);
+        boolean reset = true;
+        boolean exception = checkInputs();
         
         if (!exception) {
             InputStream myInputStream = null;
@@ -298,7 +371,9 @@ public class ProdutoView extends javax.swing.JFrame {
             }
             
             if (Controller.ProdutoControl.existProduct(Integer.parseInt(jTextFieldCodigo.getText()))) {
-                JOptionPane.showMessageDialog(this, "Código do produto já cadastrado no servidor!");
+                JOptionPane.showMessageDialog(this, "Código do produto já cadastrado no servidor!\n"+
+                                                    "Para atualizar os dados, selecione 'Atualizar Produto'.");
+                reset = false;
             } else {
                 Controller.ProdutoControl.insertProduct(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
                                                                      jTextFieldNome.getText(),
@@ -313,25 +388,103 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         }
         
-        jTextFieldCodigo.setText("");
-        jTextFieldNome.setText("");
-        jTextFieldCategoria.setText("");
-        jTextFieldFabricante.setText("");
-        jTextFieldPreco_de_Compra.setText("");
-        jTextFieldPreco_de_Venda.setText("");
-        jLabelImagem.setIcon(null);
-        file = null;
+        if (reset) {
+            jTextFieldCodigo.setText("");
+            jTextFieldNome.setText("");
+            jTextFieldCategoria.setText("");
+            jTextFieldFabricante.setText("");
+            jTextFieldPreco_de_Compra.setText("");
+            jTextFieldPreco_de_Venda.setText("");
+            jLabelImagem.setIcon(null);
+            file = null;
+        }
         
         setJTableProduto();
     }//GEN-LAST:event_jButtonInserir_ProdutoActionPerformed
+    
     // Botão Consultar
     private void jButtonConsultar_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultar_ProdutoActionPerformed
-//
-//
-//
+        boolean exception = false;
+
+        if (flagJRadioButton &&
+            !jRadioButtonCodigo.isSelected() &&
+            !jRadioButtonNome.isSelected() &&
+            !jRadioButtonCategoria.isSelected() &&
+            !jRadioButtonID_Estoquista.isSelected() &&
+            !jRadioButtonFabricante.isSelected() &&
+            !jRadioButtonPreco_de_Compra.isSelected() &&
+            !jRadioButtonPreco_de_Venda.isSelected())
+        { JOptionPane.showMessageDialog(this, "Selecione algum atributo!"); exception = true; }
+
+        if (flagJRadioButton) {    
+            if (jRadioButtonCodigo.isSelected()){
+                if (jTextFieldCodigo.getText().equals("")){
+                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                } else {
+                    try { Integer.parseInt(jTextFieldCodigo.getText()); }
+                    catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); exception = true; }           
+                }
+            } else if (jRadioButtonNome.isSelected()) {
+                if (jTextFieldNome.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                }
+            } else if (jRadioButtonCategoria.isSelected()) {
+                if (jTextFieldCategoria.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                }
+            } else if (jComboBoxID_Estoquista.isEnabled()) {
+                if (jComboBoxID_Estoquista.getSelectedItem() == null) {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                }
+            } else if (jRadioButtonFabricante.isSelected()) {
+                if (jTextFieldFabricante.getText().equals("")) {
+                   JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                }
+            } else if (jRadioButtonPreco_de_Compra.isSelected()) {
+                if (jTextFieldPreco_de_Compra.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                } else {
+                    try { Double.parseDouble(jTextFieldPreco_de_Compra.getText()); }
+                    catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Compra.getText() + "' não é um Double!"); exception = true; }
+                }
+            } else if (jRadioButtonPreco_de_Venda.isSelected()) {
+                if (jTextFieldPreco_de_Venda.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                } else {
+                    try { Double.parseDouble(jTextFieldPreco_de_Venda.getText()); }
+                    catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Venda.getText() + "' não é um Double!"); exception = true; }
+                }
+            }
+        }
+
+        if (!exception && flagJRadioButton) {
+            int index = 0;
+            Produto p = null;
+            if (jRadioButtonCodigo.isSelected())            { index = 1; p = new Produto (Integer.parseInt(jTextFieldCodigo.getText()), null, null, null, 0, 0, 0, null); }
+            if (jRadioButtonNome.isSelected())              { index = 2; p = new Produto (0, jTextFieldNome.getText(), null, null, 0, 0, 0, null); }
+            if (jRadioButtonCategoria.isSelected())         { index = 3; p = new Produto (0, null, jTextFieldCategoria.getText(), null, 0, 0, 0, null); }
+            if (jRadioButtonFabricante.isSelected())        { index = 4; p = new Produto (0, null, null, jTextFieldFabricante.getText(), 0, 0, 0, null); }
+            if (jRadioButtonPreco_de_Compra.isSelected())   { index = 5; p = new Produto (0, null, null, null, Double.parseDouble(jTextFieldPreco_de_Compra.getText()), 0, 0, null); }
+            if (jRadioButtonPreco_de_Venda.isSelected())    { index = 6; p = new Produto (0, null, null, null, 0, Double.parseDouble(jTextFieldPreco_de_Venda.getText()), 0, null); }
+            if (jRadioButtonID_Estoquista.isSelected())     { index = 7; p = new Produto (0, null, null, null, 0, 0, Integer.parseInt(jComboBoxID_Estoquista.getSelectedItem().toString()), null); }
+
+            ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getSpecificProducts(index, p));
+            jTableProduto.setModel(ProdutoTM);
+
+            jTextFieldCodigo.setText("");
+            jTextFieldNome.setText("");
+            jTextFieldCategoria.setText("");
+            jTextFieldFabricante.setText("");
+            jTextFieldPreco_de_Compra.setText("");
+            jTextFieldPreco_de_Venda.setText("");
+        }
+
+        setVisibleJRadioButton(true);
     }//GEN-LAST:event_jButtonConsultar_ProdutoActionPerformed
+    
     // Ler o 'file' e coloca em um 'BufferedImage' (Isso será escrito em um InputStream que é convertido em um BLOB antes de enviar ao BD)
     private void jButtonUpload_ImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpload_ImagemActionPerformed
+        setVisibleJRadioButton(false);
         file = null;
         jLabelImagem.setIcon(null);
         selectImage();
@@ -343,14 +496,122 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonUpload_ImagemActionPerformed
+    
     // Seleção de linha da tabela
     private void jTableProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutoMouseClicked
+        setVisibleJRadioButton(false);
         printImageProduct(jTableProduto.getSelectedRow());
     }//GEN-LAST:event_jTableProdutoMouseClicked
-
+    
+    // Atualiza tabela
     private void jButtonAtualizar_TabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizar_TabelaActionPerformed
         setJTableProduto();
     }//GEN-LAST:event_jButtonAtualizar_TabelaActionPerformed
+
+    // Finaliza aplicação
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    // Remove um item da tabela
+    private void jButtonRemover_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemover_ProdutoActionPerformed
+        setVisibleJRadioButton(false);
+        Controller.ProdutoControl.removeProduct(ProdutoTM.getListOfProducts().get(jTableProduto.getSelectedRow()).getCodigo());
+        setJTableProduto();
+    }//GEN-LAST:event_jButtonRemover_ProdutoActionPerformed
+
+    // Atualiza as informações do produto
+    private void jButtonAtualizar_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizar_ProdutoActionPerformed
+        setVisibleJRadioButton(false);
+        boolean reset = true;
+        boolean exception = checkInputs();
+        
+        if (!exception) {
+            InputStream myInputStream = null;
+            boolean[] options = new boolean [3];
+            
+            if (jTextFieldCategoria.getText().equals(""))       { options [0] = false; } else { options [0] = true; }
+            if (jTextFieldFabricante.getText().equals(""))      { options [1] = false; } else { options [1] = true; }
+            if (file == null)                                   { options [2] = false; } else {
+                    ByteArrayOutputStream myByteArrayOutputStream;
+                try {
+                    myByteArrayOutputStream = new ByteArrayOutputStream();
+                    ImageIO.write(photo, "jpg", myByteArrayOutputStream);
+                    myInputStream = new ByteArrayInputStream(myByteArrayOutputStream.toByteArray());
+                    options [2] = true;
+                } catch (IOException ex) {
+                    Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if (!Controller.ProdutoControl.existProduct(Integer.parseInt(jTextFieldCodigo.getText()))) {
+                JOptionPane.showMessageDialog(this, "Código do produto não está cadastrado no servidor!\n"+
+                                                    "Para inserir os dados, selecione 'Inserir Produto'.");
+                reset = false;
+            } else {
+                Controller.ProdutoControl.updateProduct(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
+                                                                     jTextFieldNome.getText(),
+                                                                     jTextFieldCategoria.getText(),
+                                                                     jTextFieldFabricante.getText(),
+                                                                     Double.parseDouble(jTextFieldPreco_de_Compra.getText()),
+                                                                     Double.parseDouble(jTextFieldPreco_de_Venda.getText()),
+                                                                     Integer.parseInt(jComboBoxID_Estoquista.getSelectedItem().toString()),
+                                                                     null),
+                                                                     myInputStream,
+                                                                     options);
+            }
+        }
+        
+        if (reset) {
+            jTextFieldCodigo.setText("");
+            jTextFieldNome.setText("");
+            jTextFieldCategoria.setText("");
+            jTextFieldFabricante.setText("");
+            jTextFieldPreco_de_Compra.setText("");
+            jTextFieldPreco_de_Venda.setText("");
+            jLabelImagem.setIcon(null);
+            file = null;
+        }
+        
+        setJTableProduto();
+    }//GEN-LAST:event_jButtonAtualizar_ProdutoActionPerformed
+
+    // Torna apenas o campo de 'Código' editável
+    private void jRadioButtonCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCodigoActionPerformed
+        setVisibleJRadioButton(true);
+        
+    }//GEN-LAST:event_jRadioButtonCodigoActionPerformed
+
+    // Torna apenas o campo de 'Nome' editável
+    private void jRadioButtonNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNomeActionPerformed
+        setVisibleJRadioButton(true);
+    }//GEN-LAST:event_jRadioButtonNomeActionPerformed
+
+    // Torna apenas o campo de 'Categoria' editável
+    private void jRadioButtonCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCategoriaActionPerformed
+        setVisibleJRadioButton(true);
+    }//GEN-LAST:event_jRadioButtonCategoriaActionPerformed
+
+    // Torna apenas o campo de 'ID Estoquista' editável
+    private void jRadioButtonID_EstoquistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonID_EstoquistaActionPerformed
+        setVisibleJRadioButton(true);
+    }//GEN-LAST:event_jRadioButtonID_EstoquistaActionPerformed
+
+    // Torna apenas o campo de 'Fabricante' editável
+    private void jRadioButtonFabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFabricanteActionPerformed
+        setVisibleJRadioButton(true);
+    }//GEN-LAST:event_jRadioButtonFabricanteActionPerformed
+
+    // Torna apenas o campo de 'Preço de Compra' editável
+    private void jRadioButtonPreco_de_CompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPreco_de_CompraActionPerformed
+        setVisibleJRadioButton(true);
+    }//GEN-LAST:event_jRadioButtonPreco_de_CompraActionPerformed
+
+    // Torna apenas o campo de 'Preço de Venda' editável
+    private void jRadioButtonPreco_de_VendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPreco_de_VendaActionPerformed
+        setVisibleJRadioButton(true);
+    }//GEN-LAST:event_jRadioButtonPreco_de_VendaActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -385,12 +646,16 @@ public class ProdutoView extends javax.swing.JFrame {
             }
         });
     }
-    // Inicializando dados na ProdutoView
+    
+    // Atualiza dados na tabela e da ComboBox ID Estoquista
     public void setJTableProduto () {
-        ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getProdutos());
+        setVisibleJRadioButton(false);
+        jComboBoxID_Estoquista.setModel(new javax.swing.DefaultComboBoxModel<>(Controller.ProdutoControl.getID_Estoquista()));
+        ProdutoTM = new ProdutoTableModel(Controller.ProdutoControl.getProducts());
         jTableProduto.setModel(ProdutoTM);
     }
-    // Seleciona arquivo e coloca em 'file' e exibe arquivo selecionado
+    
+    // Seleciona imagem, coloca em 'file' e exibe imagem selecionada
     public void selectImage () {
         JFileChooser myJFileChooser = new JFileChooser();
         FileNameExtensionFilter filter =    new FileNameExtensionFilter("Imagens em JPEG", "jpg");
@@ -400,13 +665,15 @@ public class ProdutoView extends javax.swing.JFrame {
         myJFileChooser.setCurrentDirectory(new File("./Imagens/"));
         myJFileChooser.showOpenDialog(this);
         file = myJFileChooser.getSelectedFile();
+        
         if (file != null) {
             ImageIcon myImageIcon = new ImageIcon(file.getAbsolutePath());
             myImageIcon.setImage(myImageIcon.getImage().getScaledInstance(jLabelImagem.getWidth(), jLabelImagem.getHeight(), 100));
             jLabelImagem.setIcon(myImageIcon);
         }
     }
-    // Mostra imagem do produto
+    
+    // Mostra imagem do produto já cadastrado
     public void printImageProduct (int index) {
         try {
             Blob myblob = ProdutoTM.getListOfProducts().get(index).getImagem();
@@ -420,7 +687,74 @@ public class ProdutoView extends javax.swing.JFrame {
             Logger.getLogger(ProdutoView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
+    
+    // Checagem dos dados cadastrados (CHECK, NOT NULL, TYPE, PRIMARY KEY)
+    public boolean checkInputs () {
+        boolean exception = false;
+        double preco_de_compra = 0, preco_de_venda = 0;
+        
+        if (jTextFieldCodigo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Código' não pode ser nulo!"); exception = true;
+        } else if (jTextFieldNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Nome' não pode ser nulo!"); exception = true;
+        } else if (jComboBoxID_Estoquista.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Nenhum ID Estoquista selecionado!"); exception = true;
+        } else if (jTextFieldPreco_de_Compra.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Preço de Compra' não pode ser nulo!"); exception = true;
+        } else if (jTextFieldPreco_de_Venda.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo 'Preço de Venda' não pode ser nulo!"); exception = true;
+        } else {
+            try { Integer.parseInt(jTextFieldCodigo.getText()); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldCodigo.getText() + "' não é um inteiro!"); exception = true; }
+            
+            try { preco_de_compra = Double.parseDouble(jTextFieldPreco_de_Compra.getText()); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Compra.getText() + "' não é um Double!"); exception = true; }
+            
+            try { preco_de_venda = Double.parseDouble(jTextFieldPreco_de_Venda.getText()); }
+            catch (NumberFormatException e) { JOptionPane.showMessageDialog(this, "A entrada: '" + jTextFieldPreco_de_Venda.getText() + "' não é um Double!"); exception = true; }
+            
+            if (!exception) {
+                if (preco_de_venda < preco_de_compra) {
+                    JOptionPane.showMessageDialog(this, "Preço de Venda não pode ser menor que Preço de Compra");
+                    exception = true;
+                }
+            }
+        }
+        
+        return exception;
+    }
+    
+    // Definindo visibilidade dos jRadioButtons e edição dos jTextField
+    public void setVisibleJRadioButton (boolean flag) {
+        flagJRadioButton = flag;
+        jRadioButtonCodigo.setVisible(flag);
+        jRadioButtonNome.setVisible(flag);
+        jRadioButtonCategoria.setVisible(flag);
+        jRadioButtonID_Estoquista.setVisible(flag);
+        jRadioButtonFabricante.setVisible(flag);
+        jRadioButtonPreco_de_Compra.setVisible(flag);
+        jRadioButtonPreco_de_Venda.setVisible(flag);
+        if (flag) {
+            jTextFieldCodigo.setEnabled(jRadioButtonCodigo.isSelected());
+            jTextFieldNome.setEnabled(jRadioButtonNome.isSelected());
+            jTextFieldCategoria.setEnabled(jRadioButtonCategoria.isSelected());
+            jComboBoxID_Estoquista.setEnabled(jRadioButtonID_Estoquista.isSelected());
+            jTextFieldFabricante.setEnabled(jRadioButtonFabricante.isSelected());
+            jTextFieldPreco_de_Compra.setEnabled(jRadioButtonPreco_de_Compra.isSelected());
+            jTextFieldPreco_de_Venda.setEnabled(jRadioButtonPreco_de_Venda.isSelected());
+        } else {
+            jTextFieldCodigo.setEnabled(true);
+            jTextFieldNome.setEnabled(true);
+            jTextFieldCategoria.setEnabled(true);
+            jComboBoxID_Estoquista.setEnabled(true);
+            jTextFieldFabricante.setEnabled(true);
+            jTextFieldPreco_de_Compra.setEnabled(true);
+            jTextFieldPreco_de_Venda.setEnabled(true);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAtualizar_Produto;
     private javax.swing.JButton jButtonAtualizar_Tabela;
     private javax.swing.JButton jButtonConsultar_Produto;
@@ -437,6 +771,13 @@ public class ProdutoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelPreco_de_Compra;
     private javax.swing.JLabel jLabelPreco_de_Venda;
+    private javax.swing.JRadioButton jRadioButtonCategoria;
+    private javax.swing.JRadioButton jRadioButtonCodigo;
+    private javax.swing.JRadioButton jRadioButtonFabricante;
+    private javax.swing.JRadioButton jRadioButtonID_Estoquista;
+    private javax.swing.JRadioButton jRadioButtonNome;
+    private javax.swing.JRadioButton jRadioButtonPreco_de_Compra;
+    private javax.swing.JRadioButton jRadioButtonPreco_de_Venda;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProduto;
     private javax.swing.JTextField jTextFieldCategoria;

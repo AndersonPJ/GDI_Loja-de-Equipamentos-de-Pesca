@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -30,37 +34,45 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabelImagem" min="-2" pref="533" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonAtualizar_Tabela" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jButtonInserir_Produto" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                           <Component id="jButtonUpload_Imagem" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="jButtonAtualizar_Tabela" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldNome" max="32767" attributes="0"/>
-                          <Component id="jTextFieldCodigo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextFieldCategoria" max="32767" attributes="0"/>
-                          <Component id="jLabelCodigo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelNome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelCategoria" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelID_Estoquista" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelFabricante" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelPreco_de_Compra" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextFieldFabricante" max="32767" attributes="0"/>
-                          <Component id="jComboBoxID_Estoquista" max="32767" attributes="0"/>
-                          <Component id="jLabelPreco_de_Venda" max="32767" attributes="0"/>
-                          <Component id="jTextFieldPreco_de_Compra" max="32767" attributes="0"/>
-                          <Component id="jTextFieldPreco_de_Venda" max="32767" attributes="0"/>
-                          <Component id="jButtonRemover_Produto" alignment="0" pref="115" max="32767" attributes="0"/>
-                          <Component id="jButtonAtualizar_Produto" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jButtonConsultar_Produto" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jRadioButtonCodigo" min="-2" max="-2" attributes="0"/>
+                      <Component id="jRadioButtonNome" min="-2" max="-2" attributes="0"/>
+                      <Component id="jRadioButtonCategoria" min="-2" max="-2" attributes="0"/>
+                      <Component id="jRadioButtonID_Estoquista" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButtonSair" alignment="1" min="-2" pref="115" max="-2" attributes="0"/>
+                  <Component id="jRadioButtonFabricante" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRadioButtonPreco_de_Compra" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRadioButtonPreco_de_Venda" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jTextFieldNome" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTextFieldCodigo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTextFieldCategoria" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelCodigo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelNome" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelCategoria" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelID_Estoquista" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelFabricante" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelPreco_de_Compra" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTextFieldFabricante" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jComboBoxID_Estoquista" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabelPreco_de_Venda" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTextFieldPreco_de_Compra" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTextFieldPreco_de_Venda" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonRemover_Produto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonAtualizar_Produto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonConsultar_Produto" max="32767" attributes="0"/>
+                  <Component id="jButtonSair" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
           </Group>
@@ -74,31 +86,54 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabelCodigo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldCodigo" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldCodigo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonCodigo" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldNome" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldNome" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonNome" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelCategoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldCategoria" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldCategoria" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonCategoria" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelID_Estoquista" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBoxID_Estoquista" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jComboBoxID_Estoquista" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonID_Estoquista" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jLabelFabricante" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldFabricante" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldFabricante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonFabricante" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelPreco_de_Compra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldPreco_de_Compra" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jLabelPreco_de_Venda" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldPreco_de_Venda" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextFieldPreco_de_Compra" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonPreco_de_Compra" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabelPreco_de_Venda" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextFieldPreco_de_Venda" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jRadioButtonPreco_de_Venda" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -110,17 +145,17 @@
                           <Component id="jButtonInserir_Produto" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonRemover_Produto" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonAtualizar_Tabela" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonAtualizar_Produto" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonUpload_Imagem" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonConsultar_Produto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAtualizar_Tabela" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAtualizar_Produto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonConsultar_Produto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonUpload_Imagem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jButtonSair" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -304,16 +339,95 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Remover Produto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemover_ProdutoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAtualizar_Produto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atualizar Produto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAtualizar_ProdutoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSair">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sair"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonCodigo">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonCodigoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonNome">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonNomeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonCategoria">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonCategoriaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonID_Estoquista">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonID_EstoquistaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonFabricante">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonFabricanteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonPreco_de_Compra">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonPreco_de_CompraActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioButtonPreco_de_Venda">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonPreco_de_VendaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
