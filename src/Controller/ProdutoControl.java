@@ -54,8 +54,10 @@ public class ProdutoControl {
         switch (index) {
             case 1: sql += "codigo = " +            p.getCodigo() + "";             break;
             case 2: sql += "nome LIKE '" +          p.getNome() + "%'";             break;
-            case 3: sql += "categoria LIKE '" +     p.getCategoria() + "%'";        break;
-            case 4: sql += "fabricante LIKE '" +    p.getFabricante() + "%'";       break;
+            case 3: if(p.getCategoria().equals("")) { sql += "categoria IS NULL";   break; }
+                else { sql += "categoria LIKE '" +     p.getCategoria() + "%'";     break; }
+            case 4: if (p.getFabricante().equals("")){ sql += "fabricante IS NULL"; break; }
+                else { sql += "fabricante LIKE '" +    p.getFabricante() + "%'";    break; }
             case 5: sql += "preco_de_compra = " +   p.getPreco_de_compra() + "";    break;
             case 6: sql += "preco_de_venda = " +    p.getPreco_de_venda() + "";     break;
             case 7: sql += "id_estoquista = " +     p.getId_estoquista() + "";      break;
@@ -64,7 +66,7 @@ public class ProdutoControl {
         
         try {
             Statement myStatement = myConnection.createStatement();
-            ResultSet myResult = myStatement.executeQuery(sql);
+                ResultSet myResult = myStatement.executeQuery(sql);
             
             while(myResult.next()) {
                 listOfProducts.add(new Produto(myResult.getInt      ("codigo"),
@@ -130,28 +132,38 @@ public class ProdutoControl {
     public static void updateProduct (Produto p, InputStream myInputStream, boolean[] options) {
         int counter = 0;
         String sql =    "UPDATE PRODUTO\n" +
-                        "SET nome = ?";
-        if (options [0]) { sql += ", categoria = ?"; counter ++; }
-        if (options [1]) { sql += ", fabricante = ?"; counter ++; }
+                        "SET nome = ?" +
+                        ", categoria = ?" +
+                        ", fabricante = ?" +
+                        ", preco_de_compra = ?" +
+                        ", preco_de_venda = ?" +
+                        ", id_estoquista = ?" +
+                        ", imagem = ?\n" +
+                        "WHERE codigo = ?";
+        //if (options [0]) { sql += ", categoria = ?"; counter ++; }
+        //if (options [1]) { sql += ", fabricante = ?"; counter ++; }
         
-        sql += ", preco_de_compra = ?" +
-               ", preco_de_venda = ?" +
-               ", id_estoquista = ?";
+        //sql += ", preco_de_compra = ?" +
+        //       ", preco_de_venda = ?" +
+        //       ", id_estoquista = ?";
         
-        if (options [2]) { sql += ", imagem) = ?"; counter ++; }
+        //if (options [2]) { sql += ", imagem = ?"; counter ++; }
         
-        sql += "\nWHERE codigo = ?";
-        System.out.println(sql);
+        //sql += "\nWHERE codigo = ?";
+        //System.out.println(sql);
         try {
             PreparedStatement myStatement = myConnection.prepareStatement(sql);
             counter = 2;
             myStatement.setString                       (1, p.getNome());
             if (options [0]) { myStatement.setString    (counter, p.getCategoria());        counter ++; }
+            else {             myStatement.setString    (counter, "");                      counter ++; }
             if (options [1]) { myStatement.setString    (counter, p.getFabricante());       counter ++; }
+            else {             myStatement.setString    (counter, "");                      counter ++; }
             myStatement.setDouble                       (counter, p.getPreco_de_compra());  counter ++;
             myStatement.setDouble                       (counter, p.getPreco_de_venda());   counter ++;
             myStatement.setInt                          (counter, p.getId_estoquista());    counter ++;
             if (options [2]) { myStatement.setBlob      (counter, myInputStream);           counter ++; }
+            else {             myStatement.setString    (counter, null);                    counter ++; }
             myStatement.setInt                          (counter, p.getCodigo());
             
             myStatement.executeUpdate();

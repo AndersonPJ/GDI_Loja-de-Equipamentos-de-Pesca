@@ -349,7 +349,7 @@ public class ProdutoView extends javax.swing.JFrame {
     // Botão Inserir
     private void jButtonInserir_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserir_ProdutoActionPerformed
         setVisibleJRadioButton(false);
-        boolean reset = true;
+        boolean reset = false;
         boolean exception = checkInputs();
         
         if (!exception) {
@@ -373,8 +373,9 @@ public class ProdutoView extends javax.swing.JFrame {
             if (Controller.ProdutoControl.existProduct(Integer.parseInt(jTextFieldCodigo.getText()))) {
                 JOptionPane.showMessageDialog(this, "Código do produto já cadastrado no servidor!\n"+
                                                     "Para atualizar os dados, selecione 'Atualizar Produto'.");
-                reset = false;
+                
             } else {
+                reset = true;
                 Controller.ProdutoControl.insertProduct(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
                                                                      jTextFieldNome.getText(),
                                                                      jTextFieldCategoria.getText(),
@@ -405,6 +406,7 @@ public class ProdutoView extends javax.swing.JFrame {
     // Botão Consultar
     private void jButtonConsultar_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultar_ProdutoActionPerformed
         boolean exception = false;
+        jLabelImagem.setIcon(null);
 
         if (flagJRadioButton &&
             !jRadioButtonCodigo.isSelected() &&
@@ -430,7 +432,7 @@ public class ProdutoView extends javax.swing.JFrame {
                 }
             } else if (jRadioButtonCategoria.isSelected()) {
                 if (jTextFieldCategoria.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                    //JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
                 }
             } else if (jComboBoxID_Estoquista.isEnabled()) {
                 if (jComboBoxID_Estoquista.getSelectedItem() == null) {
@@ -438,7 +440,7 @@ public class ProdutoView extends javax.swing.JFrame {
                 }
             } else if (jRadioButtonFabricante.isSelected()) {
                 if (jTextFieldFabricante.getText().equals("")) {
-                   JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
+                   //JOptionPane.showMessageDialog(this, "Preencha o campo selecionado!"); exception = true;
                 }
             } else if (jRadioButtonPreco_de_Compra.isSelected()) {
                 if (jTextFieldPreco_de_Compra.getText().equals("")) {
@@ -523,7 +525,7 @@ public class ProdutoView extends javax.swing.JFrame {
     // Atualiza as informações do produto
     private void jButtonAtualizar_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizar_ProdutoActionPerformed
         setVisibleJRadioButton(false);
-        boolean reset = true;
+        boolean reset = false;
         boolean exception = checkInputs();
         
         if (!exception) {
@@ -547,8 +549,9 @@ public class ProdutoView extends javax.swing.JFrame {
             if (!Controller.ProdutoControl.existProduct(Integer.parseInt(jTextFieldCodigo.getText()))) {
                 JOptionPane.showMessageDialog(this, "Código do produto não está cadastrado no servidor!\n"+
                                                     "Para inserir os dados, selecione 'Inserir Produto'.");
-                reset = false;
+                
             } else {
+                reset = true;
                 Controller.ProdutoControl.updateProduct(new Produto(Integer.parseInt(jTextFieldCodigo.getText()),
                                                                      jTextFieldNome.getText(),
                                                                      jTextFieldCategoria.getText(),
