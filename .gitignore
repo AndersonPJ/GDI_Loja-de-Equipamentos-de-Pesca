@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+//*.jar
 *.war
 *.nar
 *.ear
@@ -34,6 +34,6 @@ nb-configuration.xml
 .nb-gradle/
 *.mk
 *.bash
-*.xml
+build*.xml
 *.mf
-*.properties
+g*.properties
