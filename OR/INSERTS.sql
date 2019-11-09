@@ -76,3 +76,39 @@ VALUES  (P_ID_SEQ.NEXTVAL, 'Ferreira Mariana', '745.834.610-89', 'Feminino', TO_
         tp_endereco(34, 'Av. Prof. Ruy de Queiroz', 'Arapiraca', 'Bom Jesus', 'Piauí', 'Casa'),
         varray_telefone (tp_telefone ('9 3444-5591')), 1469.00, 'Estoquista', '01923384',
         tp_nt_setor (tp_setor ('Camping'), tp_setor ('Kits')));
+
+------------------------------------------------------------INSERTS VENDEDOR--------------------------------------------------------------
+
+INSERT INTO tb_vendedor
+VALUES  (P_ID_SEQ.NEXTVAL, 'Anderson Silva', '704.149.146-19', 'Masculino', TO_DATE ('18/08/1996', 'DD/MM/YYYY'),
+        tp_endereco(NULL, 'Av. Prof. Moraes Rego', 'Várzea', 'Recife', 'Pernambuco', NULL),
+        varray_telefone (tp_telefone ('9 7681-7048')), 1918.00, 'Vendedor', '18274983', 230, P_ID_SEQ.CURRVAL);
+
+INSERT INTO tb_vendedor
+VALUES  (P_ID_SEQ.NEXTVAL, 'Gabriel Amancio', '368.251.117-16', 'Masculino', TO_DATE ('17/03/1997', 'DD/MM/YYYY'),
+        tp_endereco(NULL, 'Rua Professor Arthur de Sá', 'Várzea', 'Recife', 'Pernambuco', 'Apartamento'),
+        varray_telefone (tp_telefone ('9 3637-7543')), 1918.00, 'Vendedor', '29847559', 215, P_ID_SEQ.CURRVAL - 1);
+
+INSERT INTO tb_vendedor
+VALUES  (P_ID_SEQ.NEXTVAL, 'Saulo Barros', '099.202.954-69', 'Masculino', TO_DATE ('18/06/1997', 'DD/MM/YYYY'),
+        tp_endereco(70, 'Av. Prof. Moraes Rego', 'Várzea', 'Petrolina', 'Bahia', NULL),
+        varray_telefone (tp_telefone ('9 7728-4491')), 1918.00, 'Vendedor', '38471102', 199, P_ID_SEQ.CURRVAL - 1);
+
+INSERT INTO tb_vendedor
+VALUES  (P_ID_SEQ.NEXTVAL, 'Silva Santos', '190.926.540-35', 'Feminino', TO_DATE ('01/07/2010', 'DD/MM/YYYY'),
+        tp_endereco(33, 'Av. Prof. Moraes Souza', 'Bem fica', 'Recife', 'Rio Grande do Norte', 'Apartamento'),
+        varray_telefone (tp_telefone ('9 4002-8912')), 1918.00, 'Vendedor', '98520666', 293, P_ID_SEQ.CURRVAL - 1);
+
+INSERT INTO tb_vendedor
+VALUES  (P_ID_SEQ.NEXTVAL, 'Juliana Ferreira', '385.719.150-32', 'Feminino', TO_DATE ('15/08/1980', 'DD/MM/YYYY'),
+        tp_endereco(2, 'Rua Arthur de Sá', 'Várzea', 'Garanhuns', 'Acre', 'Casa'),
+        varray_telefone (tp_telefone ('9 4345-4491')), 1918.00, 'Vendedor', '18052919', 252, P_ID_SEQ.CURRVAL - 1);
+
+INSERT INTO tb_vendedor
+VALUES  (P_ID_SEQ.NEXTVAL, 'Silveira Costa', '912.269.860-48', 'Feminino', TO_DATE ('23/03/1990', 'DD/MM/YYYY'),
+        tp_endereco(NULL, 'Avenida Magalhães Silva', 'Espinheiro', 'Olinda', 'Acre', NULL),
+        varray_telefone (tp_telefone ('9 2339-4491')), 1918.00, 'Vendedor', '73839344', 210, P_ID_SEQ.CURRVAL - 1);
+
+UPDATE tb_vendedor
+SET id_supervisor = P_ID_SEQ.CURRVAL
+WHERE cpf = '704.149.146-19';
