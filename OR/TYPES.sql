@@ -35,6 +35,16 @@ CREATE TYPE tp_nt_setor AS TABLE OF tp_setor;
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
+CREATE OR REPLACE TYPE tp_restricao AS OBJECT (
+    restricao                     VARCHAR2(50)
+) FINAL;
+/
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TYPE tp_nt_restricao AS TABLE OF tp_restricao;
+/
+
+------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
 CREATE OR REPLACE TYPE tp_email AS OBJECT (
     email                         VARCHAR2(50)
 ) FINAL;
@@ -97,7 +107,7 @@ CREATE OR REPLACE TYPE tp_produto AS OBJECT (
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE & 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)------------
 CREATE OR REPLACE TYPE tp_produto_especial UNDER tp_produto (
-    id_produto_especial           INTEGER
+    restricao                     tp_nt_restricao
 ) FINAL;
 /
 
