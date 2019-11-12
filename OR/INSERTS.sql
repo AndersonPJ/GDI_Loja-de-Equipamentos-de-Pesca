@@ -735,3 +735,42 @@ VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DE
 
 ------------------------------------------------------------INSERTS COMPRA----------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 1), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 1),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 1), TO_TIMESTAMP('2013-02-27 11:00:51', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 2), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 2),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 2), TO_TIMESTAMP('2013-02-01 11:04:15', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 5), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 3),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 3), TO_TIMESTAMP('2008-09-07 12:00:45', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 18), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 4),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 4), TO_TIMESTAMP('2019-03-01 17:05:07', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 19), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 5),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 5), TO_TIMESTAMP('2019-11-06 08:07:00', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 20), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 6),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 6), TO_TIMESTAMP('2015-12-25 17:17:03', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 21), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 7),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 1), TO_TIMESTAMP('2018-06-17 10:12:55', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 28), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 8),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 2), TO_TIMESTAMP('2004-07-11 06:59:34', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 30), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 9),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 3), TO_TIMESTAMP('2010-10-12 03:47:02', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra
+VALUES  (tp_compra ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 32), (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 10),
+        (SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 4), TO_TIMESTAMP('2019-10-08 01:01:01', 'YYYY-MM-DD HH24:MI:SS')));

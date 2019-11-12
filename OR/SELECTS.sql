@@ -36,4 +36,7 @@ SELECT  DEREF (CE.venda_especial.vendedor).id_pessoa AS ID_VENDEDOR, DEREF (CE.v
         DEREF (CE.cliente).id_pessoa AS ID_CLIENTE, DEREF (CE.cliente).nome AS NOME_CLIENTE, CE.data_hora
         FROM tb_compra_especial CE;
 
-
+SELECT  DEREF(C.produto).codigo AS CODIGO, DEREF(C.produto).nome AS NOME_PRODUTO,
+        DEREF(C.cliente).id_pessoa AS ID_CLIENTE, DEREF(C.cliente).nome AS NOME_CLIENTE,
+        DEREF(C.vendedor).id_pessoa AS ID_VENDEDOR, DEREF(C.vendedor).nome AS NOME_VENDEDOR
+        FROM tb_compra C;
