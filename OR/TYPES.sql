@@ -72,8 +72,8 @@ CREATE OR REPLACE TYPE tp_email FORCE AS OBJECT (
 CREATE OR REPLACE TYPE  tp_nt_email FORCE AS TABLE OF tp_email;
 /
 
-------------------------------------------------------------1. CREATE OR REPLACE TYPE & 4. MEMBER FUNCTION & 9. FINAL MEMBER--------------
-------------------------------------------------------------10. NOT INSTANTIABLE TYPE/MEMBER & 15. REF------------------------------------
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 3. MEMBER PROCEDURE & 4. MEMBER FUNCTION & 15.REF-
+------------------------------------------------------------7. CONSTRUCTOR FUNCTION & 9. FINAL MEMBER & 10. NOT INSTANTIABLE TYPE/MEMBER--
 CREATE OR REPLACE TYPE tp_pessoa FORCE AS OBJECT (
     id_pessoa                     INTEGER,
     nome                          VARCHAR2(50),
@@ -226,6 +226,3 @@ CREATE OR REPLACE TYPE tp_dependente FORCE AS OBJECT (
     telefone                      varray_telefone
 ) FINAL;
 /
-
-------------------------------------------------------------3. MEMBER PROCEDURE-----------------------------------------------------------
-------------------------------------------------------------7. CONSTRUCTOR FUNCTION-------------------------------------------------------

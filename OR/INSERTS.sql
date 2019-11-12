@@ -182,164 +182,166 @@ WHERE cpf = '704.149.146-19';
 ------------------------------------------------------------INSERTS PRODUTO---------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
 INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Shimano Elétrica Force Master', 'Carretilha', 'Shimano', 5600.00, 6999.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha')));
-
-INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Marine Sports Fierro 6000 Xwl Perfil Alto Manivela Esquerda', 'Carretilha', 'Marine Sports', 297.00, 371.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha')));
-
-INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Vizel 12000 8.1:1 Drag 8kg Saint Plus - Manivela Esquerda', 'Carretilha', 'Vizel', 440.00, 549.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Vara Lumis Infinity Green 601 (1,83m) 6-17lb Carretilha', 'Vara', 'Lumis Infinity', 235.00,  292.99,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Vara Albatroz Fishing Colombia Carretilhas e Molinetes 20-25 lb 3 partes', 'Vara', 'Albatroz Fishing', 91.00, 112.52,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Vara Albatroz Edge Telescópica – Ultra Light (molinete)', 'Vara', 'Albatroz Fishing', 85.00, 105.95,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
-
-INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Vara Saint Challenge 4203-SP 100-200gr', 'Vara', 'Saint Challenge', 1359.00, 1698.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'LINHA DE PESCA TITANIUM 8X Moss Green 300m', 'Linha', 'TITANIUM', 117.00, 146.03,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Linha')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Linha')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Linha Monofilamento STUM mono c/300m', 'Linha', 'STUM', 50.00, 62.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Linha')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Linha')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'LINHA DE PESCA FLY LINE WF 9F Green', 'Linha', 'FLY LINE', 71.00, 88.73,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Linha')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Linha')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ISCA CULTIVA MIRA BAIT RM65F 18', 'Iscas', 'Cultiva', 64.00, 79.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ISCA CULTIVA RIPN MINNOW RM 90-50 - 9CM - 7g', 'Iscas', 'Cultiva', 72.00, 89.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ISCA MARINE SPORTS SNAKE 115 - 11,5CM - 22G - COR 22G', 'Iscas', 'Marine Sports', 26.00, 32.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ISCA JIG KAKAREKO OCTOPUS 270G', 'Iscas', 'KAKAREKO', 64.00, 79.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ISCA BIG ONES - MORTAL SHAD - 9,6CM', 'Iscas', 'MORTAL SHAD', 24.00, 29.51,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Iscas')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ANZOL OWNER 11576 S-61 SINGLE HOOK', 'Anzóis', 'Owner', 20.00, 24.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ANZOL BIG ONES - BIG EYE TWISTER - 10GR', 'Anzóis', 'Big Eye Twister', 13.00, 16.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Anzol Garateia Celta GA-34 nº2/0', 'Anzóis', 'Celta', 9.00, 11.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ANZOL EAGLE CLAW OCTOPUS CIRCLE L7228BP', 'Anzóis', 'Eagle Claw', 7.00, 8.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Anzol Suporte Hook Simple Live Bait Albatroz Fishing', 'Anzóis', 'Albatroz Fishing', 3.00, 4.33,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Anzóis')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'MOLINETE DAIWA BG 20 – VELOC 4.8:1 – 3 ROL', 'Molinete', 'Daiwa', 320.00, 399.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'MOLINETE SHIMANO SIENNA 4000 RE - 2 Rol - Veloc 5.1:1', 'Molinete', 'Shimano', 232.00, 289.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
-
-INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'MOLINETE OKUMA TRIO REX SURF TXSU-60', 'Molinete', 'Okuma', 584.00, 729.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Molinete Shimano Spirex 1000 RG', 'Molinete', 'Shimano', 320.00, 399.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Molinte Albatroz Fishing Octopus 9000', 'Molinete', 'Albatroz Fishing', 191.00, 238.14,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'GIRADOR SASAME SIMPLES 210-A N 1/0', 'Acessórios', 'Sasame', 12.00, 14.50,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ARGOLA OWNER HYPER WIRE - 5196', 'Acessórios', 'Owner', 29.00, 36.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'ALICATE MULT FUNCAO CARBONO 17CM FP0105', 'Acessórios', 'Tacom', 32.00, 39.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'BOIA APOIO FOGUETAO - 90g - 038', 'Acessórios', 'Apoio', 12.00, 14.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Suporte Apoio Duplo p/Vara (AD404)', 'Acessórios', 'Apoio', 16.00, 19.50,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
-
-INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'BARRACA ECHO LIFE EASY 6P AUTOMATICA BA0014', 'Camping', 'Echo life', 392.00, 489.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
-
-INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'BOLSA AF17-0109 black mochila c/3 estojos', 'Camping', 'Albatroz Fishing', 470.00, 586.60,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Acessórios')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'LANTERNA NAUTIKA EKO 313002', 'Camping', 'Nautika', 32.00, 39.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Saco de Dormir Nautika Antartik', 'Camping', 'Nautika', 196.00, 245.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Repelente Baruel Spray - 13 horas - c/ Icaridina - 100ml', 'Camping', 'Baruel', 32.00, 39.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
-
-INSERT INTO tb_produto
-VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Conjunto Pesca de Praia e Costeira - Vara + Molinete', 'Kits', 'Tacom', 352.00, 439.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Combo Pack Rapala', 'Kits', 'Rapala', 264.00, 329.00,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Kit Iscas Artificiais Robalo - 10 Iscas - Promoção', 'Kits', 'Robalo', 72.00, 89.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Kit Iscas Artificiais Tucunaré - 6 Iscas - Promoçã', 'Kits', 'Tucunaré', 112.00, 139.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
 
 INSERT INTO tb_produto
 VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Kit kenzaki - 70Un. Anzol Chinu Black + Estojo', 'Kits', 'Kenzaki', 40.00, 49.90,
-(SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits')));
+
+------------------------------------------------------------INSERTS PRODUTO_ESPECIAL------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Shimano Elétrica Force Master', 'Carretilha', 'Shimano', 5600.00, 6999.00,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha'), tp_nt_restricao (tp_restricao ('Apenas Cartão'))));
+
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Vizel 12000 8.1:1 Drag 8kg Saint Plus - Manivela Esquerda', 'Carretilha', 'Vizel', 440.00, 549.00,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
+
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Vara Saint Challenge 4203-SP 100-200gr', 'Vara', 'Saint Challenge', 1359.00, 1698.00,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara'), tp_nt_restricao (tp_restricao ('Apenas Cartão'))));
+
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'MOLINETE OKUMA TRIO REX SURF TXSU-60', 'Molinete', 'Okuma', 584.00, 729.00,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete'), tp_nt_restricao (tp_restricao ('Apenas Cartão'))));
+
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'BARRACA ECHO LIFE EASY 6P AUTOMATICA BA0014', 'Camping', 'Echo life', 392.00, 489.00,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
+
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'BOLSA AF17-0109 black mochila c/3 estojos', 'Camping', 'Albatroz Fishing', 470.00, 586.60,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
+
+INSERT INTO tb_produto_especial
+VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Conjunto Pesca de Praia e Costeira - Vara + Molinete', 'Kits', 'Tacom', 352.00, 439.00,
+        (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
 
 ------------------------------------------------------------INSERTS FORNECEDOR------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------

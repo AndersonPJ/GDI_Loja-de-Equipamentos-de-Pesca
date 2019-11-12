@@ -34,6 +34,13 @@ CREATE TABLE tb_produto OF tp_produto (
 /
 
 ------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_produto_especial OF tp_produto_especial (
+    codigo                      PRIMARY KEY,
+    id_estoquista               REFERENCES tb_estoquista (id_pessoa)
+) NESTED TABLE restricao STORE AS nt_restricao;
+/
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
 CREATE TABLE tb_fornecedor OF tp_fornecedor (
     id_fornecedor               PRIMARY KEY,
     endereco                    WITH ROWID REFERENCES tb_endereco
