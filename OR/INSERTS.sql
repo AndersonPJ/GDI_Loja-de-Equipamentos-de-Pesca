@@ -2,6 +2,7 @@ CREATE SEQUENCE ENDERECO_ID_SEQ;
 CREATE SEQUENCE PESSOA_ID_SEQ;
 CREATE SEQUENCE PRODUTO_ID_SEQ;
 CREATE SEQUENCE FORNECEDOR_ID_SEQ;
+CREATE SEQUENCE DEPENDENTE_ID_SEQ;
 
 ------------------------------------------------------------INSERTS ENDERECO--------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
@@ -484,4 +485,89 @@ INSERT INTO tb_fornecedor
 VALUES  (tp_fornecedor (FORNECEDOR_ID_SEQ.NEXTVAL, 'Vizel', 'Vizel LTDA', '67.584.596/6857-98', '34.596.493',
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 20), varray_telefone (tp_telefone ('9 4895-4958')),
         tp_nt_email (tp_email ('vizel@gmail.com'))));
+
+------------------------------------------------------------INSERTS DEPENDENTE------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 2, '372.384.492-36', 'Sabrina Silva', 'Feminino',
+        TO_DATE ('01/01/2000', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9844-5873'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 2, '010.293.485-32', 'Severina Silva', 'Feminino',
+        TO_DATE ('28/02/1982', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8375-3654'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 4, '293.448.394-23', 'Jorge Amancio', 'Masculino',
+        TO_DATE ('21/12/1997', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8375-9365'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 4, '112.394.382-44', 'Bianca Amancio', 'Feminino',
+        TO_DATE ('13/06/1999', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 3846-2584'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 6, '198.090.293-04', 'Costa Barros', 'Masculino',
+        TO_DATE ('01/11/1991', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 3874-5974'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 6, '100.021.284-78', 'Miguel Barros', 'Masculino',
+        TO_DATE ('10/08/1994', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9908-4956'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 8, '100.293.485-23', 'Marileide Amd', 'Femenino',
+        TO_DATE ('14/01/1981', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9846-3975'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 8, '304.583-374-75', 'Altenberg Amd', 'Masculino',
+        TO_DATE ('19/03/1980', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8946-5863'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 10, '738.482.385-86', 'Diana Henrique', 'Femenino',
+        TO_DATE ('25/12/1972', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 7896-4965'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 10, '283.090.027-11', 'Leon Henrique', 'Masculino',
+        TO_DATE ('29/03/1977', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 7836-5972'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 12, '302.384.582-34', 'Marcio Santos', 'Masculino',
+        TO_DATE ('30/10/2002', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8946-8434'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 12, '192.384.374-99', 'Fabiano Santos', 'Masculino',
+        TO_DATE ('30/09/1989', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8001-2861'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 14, '090.293.384-15', 'Anabelle Ferreira', 'Feminino',
+        TO_DATE ('15/08/1988', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9731-1231'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 14, '293.495.485-32', 'Sara Ferreira', 'Feminino',
+        TO_DATE ('22/09/1990', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 3642-3976'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 16, '088.009.291-01', 'Michelangelo Costa', 'Masculino',
+        TO_DATE ('02/12/1992', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 3332-3764'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 16, '829.372.273-92', 'Lais Costa', 'Feminino',
+        TO_DATE ('14/08/1992', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8038-4873'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 20, '708.390.203-99', 'Viviane Mariana', 'Feminino',
+        TO_DATE ('21/02/1993', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9047-4972'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 20, '982.000.394-64', 'Leticia Mariana', 'Feminino',
+        TO_DATE ('09/04/1988', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9312-3964'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 20, '894.374.698-19', 'Natalia Mariana', 'Feminino',
+        TO_DATE ('11/05/1990', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 8936-4862'))));
+
+INSERT INTO tb_dependente
+VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 20, '009.284.573-24', 'Cecilia Mariana', 'Feminino',
+        TO_DATE ('07/09/1991', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9437-4861'))));
+
+
+
 

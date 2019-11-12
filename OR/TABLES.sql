@@ -46,3 +46,10 @@ CREATE TABLE tb_fornecedor OF tp_fornecedor (
     endereco                    WITH ROWID REFERENCES tb_endereco
 ) NESTED TABLE email STORE AS nt_email;
 /
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_dependente OF tp_dependente (
+    PRIMARY KEY                 (id_dependente, id_funcionario)
+);
+/
+
