@@ -21,7 +21,7 @@ CREATE TABLE tb_estoquista OF tp_estoquista (
 ------------------------------------------------------------13. CREATE TABLE OF & 16. SCOPE IS--------------------------------------------
 CREATE TABLE tb_vendedor OF tp_vendedor (
     id_pessoa                   PRIMARY KEY,
-    endereco                    SCOPE IS tb_endereco
+    endereco                    SCOPE IS tb_endereco,
     id_supervisor               REFERENCES tb_vendedor (id_pessoa)
 );
 /

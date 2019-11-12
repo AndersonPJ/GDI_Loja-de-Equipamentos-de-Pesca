@@ -2,8 +2,8 @@ CREATE SEQUENCE E_ID_SEQ;
 CREATE SEQUENCE P_ID_SEQ;
 CREATE SEQUENCE PR_ID_SEQ;
 
-------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
 ------------------------------------------------------------INSERTS ENDERECO--------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
 INSERT INTO tb_endereco
 VALUES  (E_ID_SEQ.NEXTVAL, NULL, 'Rua Cassilandia', 'Várzea', 'Recife', 'Pernambuco', 'Casa');
 
@@ -64,8 +64,8 @@ VALUES  (E_ID_SEQ.NEXTVAL, 69, 'Rua Márcio Bonfin', 'Centro', 'Natal', 'Rio Gra
 INSERT INTO tb_endereco
 VALUES  (E_ID_SEQ.NEXTVAL, 34, 'Av. Prof. Ruy de Queiroz', 'Arapiraca', 'Bom Jesus', 'Piauí', 'Casa');
 
-------------------------------------------------------------18. SELECT REF----------------------------------------------------------------
 ------------------------------------------------------------INSERTS CLIENTE---------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
 INSERT INTO tb_cliente
 VALUES  (P_ID_SEQ.NEXTVAL, 'Matheus Amorim', '663.823.195-11', 'Masculino', TO_DATE ('11/11/1997', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 1),
@@ -116,8 +116,8 @@ VALUES  (P_ID_SEQ.NEXTVAL, 'Juliana Souza', '385.719.150-32', 'Feminino', TO_DAT
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 19),
         varray_telefone (tp_telefone ('9 3390-4482')), 'juliana_souza@gmail.com');
 
-------------------------------------------------------------18. SELECT REF----------------------------------------------------------------
 ------------------------------------------------------------INSERTS ESTOQUISTA------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
 INSERT INTO tb_estoquista
 VALUES  (P_ID_SEQ.NEXTVAL, 'Marcos Amd', '222.349.830-29', 'Masculino', TO_DATE ('08/01/1990', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 8),
@@ -142,9 +142,8 @@ VALUES  (P_ID_SEQ.NEXTVAL, 'Ferreira Mariana', '745.834.610-89', 'Feminino', TO_
         varray_telefone (tp_telefone ('9 3444-5591')), 1469.00, 'Estoquista', '01923384',
         tp_nt_setor (tp_setor ('Camping'), tp_setor ('Kits')));
 
-------------------------------------------------------------18. SELECT REF----------------------------------------------------------------
 ------------------------------------------------------------INSERTS VENDEDOR--------------------------------------------------------------
-
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
 INSERT INTO tb_vendedor
 VALUES  (P_ID_SEQ.NEXTVAL, 'Anderson Silva', '704.149.146-19', 'Masculino', TO_DATE ('18/08/1996', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 2),
@@ -180,6 +179,7 @@ SET id_supervisor = P_ID_SEQ.CURRVAL
 WHERE cpf = '704.149.146-19';
 
 ------------------------------------------------------------INSERTS PRODUTO---------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
 INSERT INTO tb_produto
 VALUES  (PR_ID_SEQ.NEXTVAL, 'Carretilha Shimano Elétrica Force Master', 'Carretilha', 'Shimano', 5600.00, 6999.00,
 (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha'));

@@ -1,11 +1,12 @@
-------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_endereco AS OBJECT (
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 6. MAP MEMBER FUNCTION----------------------------
+CREATE OR REPLACE TYPE tp_endereco FORCE AS OBJECT (
     id_endereco                   INTEGER,
     numero                        INTEGER,
     rua                           VARCHAR2(50),
     bairro                        VARCHAR2(50),
     cidade                        VARCHAR2(50),
-    estado                        VARCHAR2(50)
+    estado                        VARCHAR2(50),
+    MAP MEMBER FUNCTION get_endereco RETURN VARCHAR2
 ) FINAL;
 /
 
@@ -15,50 +16,65 @@ ALTER TYPE tp_endereco
 ) CASCADE;
 /
 
+------------------------------------------------------------2. CREATE OR REPLACE TYPE BODY------------------------------------------------
+CREATE OR REPLACE TYPE BODY tp_endereco AS
+    MAP MEMBER FUNCTION get_endereco RETURN VARCHAR2
+        IS
+        BEGIN
+            return  ('ID: ' || SELF.id_endereco ||
+                    ', NUMERO: ' || SELF.numero ||
+                    ', RUA: ' || SELF.rua ||
+                    ', COMPLEMENTO: ' || complemento ||
+                    ', BAIRRO: ' || bairro ||
+                    ', CIDADE: ' || cidade ||
+                    ', ESTADO: ' || estado);
+        END;
+END;
+/
+
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_telefone AS OBJECT (
+CREATE OR REPLACE TYPE tp_telefone FORCE AS OBJECT (
     telefone                      VARCHAR2(50)
 ) FINAL;
 /
 
 ------------------------------------------------------------21. VARRAY--------------------------------------------------------------------
-CREATE TYPE varray_telefone AS VARRAY (3) OF tp_telefone; 
+CREATE OR REPLACE TYPE varray_telefone FORCE AS VARRAY (3) OF tp_telefone; 
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_setor AS OBJECT (
+CREATE OR REPLACE TYPE tp_setor FORCE AS OBJECT (
     setor                         VARCHAR2(50)
 ) FINAL;
 /
 
 ------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
-CREATE TYPE tp_nt_setor AS TABLE OF tp_setor;
+CREATE OR REPLACE TYPE tp_nt_setor FORCE AS TABLE OF tp_setor;
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_restricao AS OBJECT (
+CREATE OR REPLACE TYPE tp_restricao FORCE AS OBJECT (
     restricao                     VARCHAR2(50)
 ) FINAL;
 /
 
 ------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
-CREATE TYPE tp_nt_restricao AS TABLE OF tp_restricao;
+CREATE OR REPLACE TYPE tp_nt_restricao FORCE AS TABLE OF tp_restricao;
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_email AS OBJECT (
+CREATE OR REPLACE TYPE tp_email FORCE AS OBJECT (
     email                         VARCHAR2(50)
 ) FINAL;
 /
 
 ------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
-CREATE TYPE  tp_nt_email AS TABLE OF tp_email;
+CREATE OR REPLACE TYPE  tp_nt_email FORCE AS TABLE OF tp_email;
 /
 
-------------------------------------------------------------1. CREATE OR REPLACE TYPE & 10. NOT INSTANTIABLE TYPE/MEMBER------------------
-------------------------------------------------------------4. MEMBER FUNCTION------------------------------------------------------------
-------------------------------------------------------------15. REF-----------------------------------------------------------------------
-CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 4. MEMBER FUNCTION & 9. FINAL MEMBER--------------
+------------------------------------------------------------10. NOT INSTANTIABLE TYPE/MEMBER & 15. REF------------------------------------
+CREATE OR REPLACE TYPE tp_pessoa FORCE AS OBJECT (
     id_pessoa                     INTEGER,
     nome                          VARCHAR2(50),
     cpf                           VARCHAR2(14),
@@ -71,7 +87,7 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT (
     --    (f_id_pessoa NUMBER, f_nome VARCHAR2, f_cpf VARCHAR2, f_sexo VARCHAR2, f_data_nascimento DATE, f_endereco tp_endereco, f_telefone varray_telefone)
     --    RETURN SELF AS RESULT,
     
-    MEMBER FUNCTION get_nome RETURN VARCHAR2
+    FINAL MEMBER FUNCTION get_nome RETURN VARCHAR2
     
     --MEMBER PROCEDURE set_telefone (p_telefone varray_telefone)
 ) NOT FINAL NOT INSTANTIABLE;
@@ -92,7 +108,7 @@ CREATE OR REPLACE TYPE BODY tp_pessoa AS
     --        SELF.telefone           := f_telefone;
     --    END;
     
-    MEMBER FUNCTION get_nome RETURN VARCHAR2
+    FINAL MEMBER FUNCTION get_nome RETURN VARCHAR2
         IS
         BEGIN
             RETURN nome;
@@ -112,12 +128,24 @@ CREATE OR REPLACE TYPE tp_cliente UNDER tp_pessoa (
 ) FINAL;
 /
 
-------------------------------------------------------------1. CREATE OR REPLACE TYPE & 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)------------
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 4. MEMBER FUNCTION--------------------------------
+------------------------------------------------------------11. HERANÇA DE TIPOS (UNDER/NOT FINAL)----------------------------------------
 CREATE OR REPLACE TYPE tp_funcionario UNDER tp_pessoa (
     salario                       FLOAT,
     cargo                         VARCHAR2(50),
-    ctps                          VARCHAR2(8)
+    ctps                          VARCHAR2(8),
+    MEMBER FUNCTION get_salario_total RETURN FLOAT
 ) NOT FINAL NOT INSTANTIABLE;
+/
+
+------------------------------------------------------------2. CREATE OR REPLACE TYPE BODY------------------------------------------------
+CREATE OR REPLACE TYPE BODY tp_funcionario AS
+    MEMBER FUNCTION get_salario_total RETURN FLOAT
+        IS
+        BEGIN
+            RETURN SELF.salario;
+        END;
+END;
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE & 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)------------
@@ -126,23 +154,46 @@ CREATE OR REPLACE TYPE tp_estoquista UNDER tp_funcionario (
 ) FINAL;
 /
 
-------------------------------------------------------------1. CREATE OR REPLACE TYPE & 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)------------
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 4. MEMBER FUNCTION--------------------------------
+------------------------------------------------------------8. OVERRIDING MEMBER & 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)-----------------
 CREATE OR REPLACE TYPE tp_vendedor UNDER tp_funcionario (
     comissao                      FLOAT,
-    id_supervisor                 INTEGER
+    id_supervisor                 INTEGER,
+    OVERRIDING MEMBER FUNCTION get_salario_total RETURN FLOAT
 ) FINAL;
 /
 
-------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_produto AS OBJECT (
+------------------------------------------------------------2. CREATE OR REPLACE TYPE BODY------------------------------------------------
+CREATE OR REPLACE TYPE BODY tp_vendedor AS
+    OVERRIDING MEMBER FUNCTION get_salario_total RETURN FLOAT 
+        IS
+        BEGIN
+            RETURN SELF.salario + SELF.comissao;
+        END;
+END;
+/
+
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 5. ORDER MEMBER FUNCTION--------------------------
+CREATE OR REPLACE TYPE tp_produto FORCE AS OBJECT (
     codigo                        INTEGER,
     nome                          VARCHAR2(100),
     categoria                     VARCHAR2(50),
     fabricante                    VARCHAR2(50),
     preco_de_compra               FLOAT,
     preco_de_venda                FLOAT,
-    id_estoquista                 INTEGER
+    id_estoquista                 INTEGER,
+    ORDER MEMBER FUNCTION compara_preco_de_compra (x tp_produto) RETURN FLOAT
 ) NOT FINAL;
+/
+
+------------------------------------------------------------2. CREATE OR REPLACE TYPE BODY------------------------------------------------
+CREATE OR REPLACE TYPE BODY tp_produto AS
+    ORDER MEMBER FUNCTION compara_preco_de_compra (x tp_produto) RETURN FLOAT
+        IS
+        BEGIN
+            RETURN SELF.preco_de_compra - x.preco_de_compra;
+        END;
+END;
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE & 11. HERANÇA DE TIPOS (UNDER/NOT FINAL)------------
@@ -153,7 +204,7 @@ CREATE OR REPLACE TYPE tp_produto_especial UNDER tp_produto (
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
 CREATE OR REPLACE TYPE tp_fornecedor AS OBJECT (
-    id_fornecedor                 INTEGER,
+   id_fornecedor                 INTEGER,
     nome_fantasia                 VARCHAR2(50),
     razao_social                  VARCHAR2(50),
     cnpj                          VARCHAR2(18),
@@ -174,11 +225,4 @@ CREATE OR REPLACE TYPE tp_dependente AS OBJECT (
 /
 
 ------------------------------------------------------------3. MEMBER PROCEDURE-----------------------------------------------------------
-------------------------------------------------------------5. ORDER MEMBER FUNCTION------------------------------------------------------
-------------------------------------------------------------6. MAP MEMBER FUNCTION--------------------------------------------------------
 ------------------------------------------------------------7. CONSTRUCTOR FUNCTION-------------------------------------------------------
-------------------------------------------------------------8. OVERRIDING MEMBER----------------------------------------------------------
-------------------------------------------------------------9. FINAL MEMBER---------------------------------------------------------------
-------------------------------------------------------------20. VALUE---------------------------------------------------------------------
-------------------------------------------------------------22. CONSULTA A VARRAY---------------------------------------------------------
-------------------------------------------------------------24. CONSULTA A NESTED TABLE---------------------------------------------------
