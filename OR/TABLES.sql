@@ -32,3 +32,10 @@ CREATE TABLE tb_produto OF tp_produto (
     id_estoquista               REFERENCES tb_estoquista (id_pessoa)
 );
 /
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_fornecedor OF tp_fornecedor (
+    id_fornecedor               PRIMARY KEY,
+    endereco                    WITH ROWID REFERENCES tb_endereco
+) NESTED TABLE email STORE AS nt_email;
+/

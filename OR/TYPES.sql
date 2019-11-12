@@ -202,25 +202,28 @@ CREATE OR REPLACE TYPE tp_produto_especial UNDER tp_produto (
 ) FINAL;
 /
 
-------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_fornecedor AS OBJECT (
-   id_fornecedor                 INTEGER,
+------------------------------------------------------------1. CREATE OR REPLACE TYPE & 15. REF-------------------------------------------
+CREATE OR REPLACE TYPE tp_fornecedor FORCE AS OBJECT (
+    id_fornecedor                 INTEGER,
     nome_fantasia                 VARCHAR2(50),
     razao_social                  VARCHAR2(50),
     cnpj                          VARCHAR2(18),
     inscricao_estadual            VARCHAR2(10),
-    id_endereco                   INTEGER
+    endereco                      REF tp_endereco,
+    telefone                      varray_telefone,
+    email                         tp_nt_email
 ) FINAL;
 /
 
 ------------------------------------------------------------1. CREATE OR REPLACE TYPE-----------------------------------------------------
-CREATE OR REPLACE TYPE tp_dependente AS OBJECT (
+CREATE OR REPLACE TYPE tp_dependente FORCE AS OBJECT (
     id_dependente                 INTEGER,
     id_funcionario                INTEGER,
     cpf                           VARCHAR2(14),
     nome                          VARCHAR2(50),
     sexo                          VARCHAR2(50),			
-    data_nascimento               DATE
+    data_nascimento               DATE,
+    telefone                      varray_telefone
 ) FINAL;
 /
 
