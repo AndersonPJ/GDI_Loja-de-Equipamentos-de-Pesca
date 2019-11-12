@@ -83,30 +83,30 @@ CREATE OR REPLACE TYPE tp_pessoa FORCE AS OBJECT (
     endereco                      REF tp_endereco,
     telefone                      varray_telefone,
 
-    --CONSTRUCTOR FUNCTION tp_pessoa
-    --    (f_id_pessoa NUMBER, f_nome VARCHAR2, f_cpf VARCHAR2, f_sexo VARCHAR2, f_data_nascimento DATE, f_endereco tp_endereco, f_telefone varray_telefone)
-    --    RETURN SELF AS RESULT,
+    CONSTRUCTOR FUNCTION tp_pessoa
+        (f_id_pessoa NUMBER, f_nome VARCHAR2, f_cpf VARCHAR2, f_sexo VARCHAR2, f_data_nascimento DATE, f_endereco tp_endereco, f_telefone varray_telefone)
+        RETURN SELF AS RESULT,
     
-    FINAL MEMBER FUNCTION get_nome RETURN VARCHAR2
+    FINAL MEMBER FUNCTION get_nome RETURN VARCHAR2,
     
-    --MEMBER PROCEDURE set_telefone (p_telefone varray_telefone)
+    MEMBER PROCEDURE set_telefone (f_telefone varray_telefone)
 ) NOT FINAL NOT INSTANTIABLE;
 /
 
 ------------------------------------------------------------2. CREATE OR REPLACE TYPE BODY------------------------------------------------
 CREATE OR REPLACE TYPE BODY tp_pessoa AS
-    --CONSTRUCTOR FUNCTION tp_pessoa
-    --    (f_id_pessoa NUMBER, f_nome VARCHAR2, f_cpf VARCHAR2, f_sexo VARCHAR2, f_data_nascimento DATE, f_endereco tp_endereco, f_telefone varray_telefone)
-    --    RETURN SELF AS RESULT IS
-    --    BEGIN
-    --        SELF.id_pessoa          := f_id_pessoa;
-    --        SELF.nome               := f_nome;
-    --        SELF.cpf                := f_cpf;
-    --        SELF.sexo               := f_sexo;
-    --        SELF.data_nascimento    := f_data_nascimento;
-    --        SELF.endereco           := f_endereco;
-    --        SELF.telefone           := f_telefone;
-    --    END;
+    CONSTRUCTOR FUNCTION tp_pessoa
+        (f_id_pessoa NUMBER, f_nome VARCHAR2, f_cpf VARCHAR2, f_sexo VARCHAR2, f_data_nascimento DATE, f_endereco tp_endereco, f_telefone varray_telefone)
+        RETURN SELF AS RESULT IS
+        BEGIN
+            SELF.id_pessoa          := f_id_pessoa;
+            SELF.nome               := f_nome;
+            SELF.cpf                := f_cpf;
+            SELF.sexo               := f_sexo;
+            SELF.data_nascimento    := f_data_nascimento;
+            SELF.endereco           := f_endereco;
+            SELF.telefone           := f_telefone;
+        END;
     
     FINAL MEMBER FUNCTION get_nome RETURN VARCHAR2
         IS
@@ -114,11 +114,11 @@ CREATE OR REPLACE TYPE BODY tp_pessoa AS
             RETURN nome;
         END;
 
-    --MEMBER PROCEDURE set_telefone (f_telefone varray_telefone)
-    --    IS
-    --    BEGIN
-    --        SELF.telefone := f_telefone;
-    --    END;
+    MEMBER PROCEDURE set_telefone (f_telefone varray_telefone)
+        IS
+        BEGIN
+            SELF.telefone := f_telefone;
+        END;
 END;
 /
 
