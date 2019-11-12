@@ -1,6 +1,9 @@
 CREATE SEQUENCE ENDERECO_ID_SEQ;
-CREATE SEQUENCE PESSOA_ID_SEQ;
+CREATE SEQUENCE CLIENTE_ID_SEQ;
+CREATE SEQUENCE ESTOQUISTA_ID_SEQ;
+CREATE SEQUENCE VENDEDOR_ID_SEQ;
 CREATE SEQUENCE PRODUTO_ID_SEQ;
+CREATE SEQUENCE PRODUTO_ESP_ID_SEQ;
 CREATE SEQUENCE FORNECEDOR_ID_SEQ;
 CREATE SEQUENCE DEPENDENTE_ID_SEQ;
 
@@ -69,77 +72,77 @@ VALUES  (tp_endereco (ENDERECO_ID_SEQ.NEXTVAL, 34, 'Av. Prof. Ruy de Queiroz', '
 ------------------------------------------------------------INSERTS CLIENTE---------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Matheus Amorim', '663.823.195-11', 'Masculino', TO_DATE ('11/11/1997', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Matheus Amorim', '663.823.195-11', 'Masculino', TO_DATE ('11/11/1997', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 1),
         varray_telefone (tp_telefone ('9 0193-0039'), tp_telefone ('9 4559-6601')), 'matheus_amorim@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Lucas Albuquerque', '710.133.825-08', 'Masculino', TO_DATE ('29/07/1995', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Lucas Albuquerque', '710.133.825-08', 'Masculino', TO_DATE ('29/07/1995', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 3),
         varray_telefone (tp_telefone ('9 3455-8903'), tp_telefone ('9 5290-5084')), 'lucas_albuquerque@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Pedro Veríssimo', '206.750.302-08', 'Masculino', TO_DATE ('16/10/1995', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Pedro Veríssimo', '206.750.302-08', 'Masculino', TO_DATE ('16/10/1995', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 5),
         varray_telefone (tp_telefone ('9 2110-3341'), tp_telefone ('9 2390-5734')), 'pedro_veríssimo@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Carlos Intel', '593.659.850-05', 'Masculino', TO_DATE ('01/11/1940', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Carlos Intel', '593.659.850-05', 'Masculino', TO_DATE ('01/11/1940', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 7),
         varray_telefone (tp_telefone ('9 9009-1102')), 'carlos_intel@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Lucas Felipe', '164.328.910-19', 'Masculino', TO_DATE ('23/06/2005', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Lucas Felipe', '164.328.910-19', 'Masculino', TO_DATE ('23/06/2005', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 9),
         varray_telefone (tp_telefone ('9 1102-2221')), 'lucas_felipe@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Maria Souza', '912.269.860-48', 'Feminino', TO_DATE ('06/02/2000', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Maria Souza', '912.269.860-48', 'Feminino', TO_DATE ('06/02/2000', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 11),
         varray_telefone (tp_telefone ('9 8733-4422')), 'maria_souza@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Marta Souza', '690.839.360-74', 'Feminino', TO_DATE ('05/03/2002', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Marta Souza', '690.839.360-74', 'Feminino', TO_DATE ('05/03/2002', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 13),
         varray_telefone (tp_telefone ('9 9022-0001')), 'marta_souza@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Ferreira Silvana', '745.834.610-89', 'Feminino', TO_DATE ('20/12/1999', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Ferreira Silvana', '745.834.610-89', 'Feminino', TO_DATE ('20/12/1999', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 15),
         varray_telefone (tp_telefone ('9 1092-3301')), 'ferreira_silvana@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Bruna Novas', '190.926.540-35', 'Feminino', TO_DATE ('13/10/2008', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Bruna Novas', '190.926.540-35', 'Feminino', TO_DATE ('13/10/2008', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 17),
         varray_telefone (tp_telefone ('9 9089-4481')), 'bruna_novas@gmail.com'));
 
 INSERT INTO tb_cliente
-VALUES  (tp_cliente (PESSOA_ID_SEQ.NEXTVAL, 'Juliana Souza', '385.719.150-32', 'Feminino', TO_DATE ('01/08/1989', 'DD/MM/YYYY'),
+VALUES  (tp_cliente (CLIENTE_ID_SEQ.NEXTVAL, 'Juliana Souza', '385.719.150-32', 'Feminino', TO_DATE ('01/08/1989', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 19),
         varray_telefone (tp_telefone ('9 3390-4482')), 'juliana_souza@gmail.com'));
 
 ------------------------------------------------------------INSERTS ESTOQUISTA------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
 INSERT INTO tb_estoquista
-VALUES  (tp_estoquista (PESSOA_ID_SEQ.NEXTVAL, 'Marcos Amd', '222.349.830-29', 'Masculino', TO_DATE ('08/01/1990', 'DD/MM/YYYY'),
+VALUES  (tp_estoquista (ESTOQUISTA_ID_SEQ.NEXTVAL, 'Marcos Amd', '222.349.830-29', 'Masculino', TO_DATE ('08/01/1990', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 8),
         varray_telefone (tp_telefone ('9 3389-4419')), 1469.00, 'Estoquista', '19237483',
         tp_nt_setor (tp_setor ('Carretilha'), tp_setor ('Vara'), tp_setor ('Linha'))));
 
 INSERT INTO tb_estoquista
-VALUES  (tp_estoquista (PESSOA_ID_SEQ.NEXTVAL, 'Felipe Henrique', '403.349.820-65', 'Masculino', TO_DATE ('15/03/1999', 'DD/MM/YYYY'),
+VALUES  (tp_estoquista (ESTOQUISTA_ID_SEQ.NEXTVAL, 'Felipe Henrique', '403.349.820-65', 'Masculino', TO_DATE ('15/03/1999', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 10),
         varray_telefone (tp_telefone ('9 3222-3315')), 1469.00, 'Estoquista', '59374401',
         tp_nt_setor (tp_setor ('Iscas'), tp_setor ('Anzóis'))));
 
 INSERT INTO tb_estoquista
-VALUES  (tp_estoquista (PESSOA_ID_SEQ.NEXTVAL, 'Mariana Silva', '690.839.360-74', 'Feminino', TO_DATE ('30/03/2012', 'DD/MM/YYYY'),
+VALUES  (tp_estoquista (ESTOQUISTA_ID_SEQ.NEXTVAL, 'Mariana Silva', '690.839.360-74', 'Feminino', TO_DATE ('30/03/2012', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 18),
         varray_telefone (tp_telefone ('9 3233-4469')), 1469.00, 'Estoquista', '91028337',
         tp_nt_setor (tp_setor ('Molinete'), tp_setor ('Acessórios'))));
 
 INSERT INTO tb_estoquista
-VALUES  (tp_estoquista (PESSOA_ID_SEQ.NEXTVAL, 'Ferreira Mariana', '745.834.610-89', 'Feminino', TO_DATE ('24/02/1997', 'DD/MM/YYYY'),
+VALUES  (tp_estoquista (ESTOQUISTA_ID_SEQ.NEXTVAL, 'Ferreira Mariana', '745.834.610-89', 'Feminino', TO_DATE ('24/02/1997', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 20),
         varray_telefone (tp_telefone ('9 3444-5591')), 1469.00, 'Estoquista', '01923384',
         tp_nt_setor (tp_setor ('Camping'), tp_setor ('Kits'))));
@@ -147,37 +150,37 @@ VALUES  (tp_estoquista (PESSOA_ID_SEQ.NEXTVAL, 'Ferreira Mariana', '745.834.610-
 ------------------------------------------------------------INSERTS VENDEDOR--------------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
 INSERT INTO tb_vendedor
-VALUES  (tp_vendedor (PESSOA_ID_SEQ.NEXTVAL, 'Anderson Silva', '704.149.146-19', 'Masculino', TO_DATE ('18/08/1996', 'DD/MM/YYYY'),
+VALUES  (tp_vendedor (VENDEDOR_ID_SEQ.NEXTVAL, 'Anderson Silva', '704.149.146-19', 'Masculino', TO_DATE ('18/08/1996', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 2),
-        varray_telefone (tp_telefone ('9 7681-7048')), 1918.00, 'Vendedor', '18274983', 230, PESSOA_ID_SEQ.CURRVAL));
+        varray_telefone (tp_telefone ('9 7681-7048')), 1918.00, 'Vendedor', '18274983', 230, VENDEDOR_ID_SEQ.CURRVAL));
 
 INSERT INTO tb_vendedor
-VALUES  (tp_vendedor (PESSOA_ID_SEQ.NEXTVAL, 'Gabriel Amancio', '368.251.117-16', 'Masculino', TO_DATE ('17/03/1997', 'DD/MM/YYYY'),
+VALUES  (tp_vendedor (VENDEDOR_ID_SEQ.NEXTVAL, 'Gabriel Amancio', '368.251.117-16', 'Masculino', TO_DATE ('17/03/1997', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 4),
-        varray_telefone (tp_telefone ('9 3637-7543')), 1918.00, 'Vendedor', '29847559', 215, PESSOA_ID_SEQ.CURRVAL - 1));
+        varray_telefone (tp_telefone ('9 3637-7543')), 1918.00, 'Vendedor', '29847559', 215, VENDEDOR_ID_SEQ.CURRVAL - 1));
 
 INSERT INTO tb_vendedor
-VALUES  (tp_vendedor (PESSOA_ID_SEQ.NEXTVAL, 'Saulo Barros', '099.202.954-69', 'Masculino', TO_DATE ('18/06/1997', 'DD/MM/YYYY'),
+VALUES  (tp_vendedor (VENDEDOR_ID_SEQ.NEXTVAL, 'Saulo Barros', '099.202.954-69', 'Masculino', TO_DATE ('18/06/1997', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 6),
-        varray_telefone (tp_telefone ('9 7728-4491')), 1918.00, 'Vendedor', '38471102', 199, PESSOA_ID_SEQ.CURRVAL - 1));
+        varray_telefone (tp_telefone ('9 7728-4491')), 1918.00, 'Vendedor', '38471102', 199, VENDEDOR_ID_SEQ.CURRVAL - 1));
 
 INSERT INTO tb_vendedor
-VALUES  (tp_vendedor (PESSOA_ID_SEQ.NEXTVAL, 'Silva Santos', '190.926.540-35', 'Feminino', TO_DATE ('01/07/2010', 'DD/MM/YYYY'),
+VALUES  (tp_vendedor (VENDEDOR_ID_SEQ.NEXTVAL, 'Silva Santos', '190.926.540-35', 'Feminino', TO_DATE ('01/07/2010', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 12),
-        varray_telefone (tp_telefone ('9 4002-8912')), 1918.00, 'Vendedor', '98520666', 293, PESSOA_ID_SEQ.CURRVAL - 1));
+        varray_telefone (tp_telefone ('9 4002-8912')), 1918.00, 'Vendedor', '98520666', 293, VENDEDOR_ID_SEQ.CURRVAL - 1));
 
 INSERT INTO tb_vendedor
-VALUES  (tp_vendedor (PESSOA_ID_SEQ.NEXTVAL, 'Juliana Ferreira', '385.719.150-32', 'Feminino', TO_DATE ('15/08/1980', 'DD/MM/YYYY'),
+VALUES  (tp_vendedor (VENDEDOR_ID_SEQ.NEXTVAL, 'Juliana Ferreira', '385.719.150-32', 'Feminino', TO_DATE ('15/08/1980', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 14),
-        varray_telefone (tp_telefone ('9 4345-4491')), 1918.00, 'Vendedor', '18052919', 252, PESSOA_ID_SEQ.CURRVAL - 1));
+        varray_telefone (tp_telefone ('9 4345-4491')), 1918.00, 'Vendedor', '18052919', 252, VENDEDOR_ID_SEQ.CURRVAL - 1));
 
 INSERT INTO tb_vendedor
-VALUES  (tp_vendedor (PESSOA_ID_SEQ.NEXTVAL, 'Silveira Costa', '912.269.860-48', 'Feminino', TO_DATE ('23/03/1990', 'DD/MM/YYYY'),
+VALUES  (tp_vendedor (VENDEDOR_ID_SEQ.NEXTVAL, 'Silveira Costa', '912.269.860-48', 'Feminino', TO_DATE ('23/03/1990', 'DD/MM/YYYY'),
         (SELECT REF (E) FROM tb_endereco E WHERE E.id_endereco = 16),
-        varray_telefone (tp_telefone ('9 2339-4491')), 1918.00, 'Vendedor', '73839344', 210, PESSOA_ID_SEQ.CURRVAL - 1));
+        varray_telefone (tp_telefone ('9 2339-4491')), 1918.00, 'Vendedor', '73839344', 210, VENDEDOR_ID_SEQ.CURRVAL - 1));
 
 UPDATE tb_vendedor
-SET id_supervisor = PESSOA_ID_SEQ.CURRVAL
+SET id_supervisor = VENDEDOR_ID_SEQ.CURRVAL
 WHERE cpf = '704.149.146-19';
 
 ------------------------------------------------------------INSERTS PRODUTO---------------------------------------------------------------
@@ -317,31 +320,31 @@ VALUES  (tp_produto (PRODUTO_ID_SEQ.NEXTVAL, 'Kit kenzaki - 70Un. Anzol Chinu Bl
 ------------------------------------------------------------INSERTS PRODUTO_ESPECIAL------------------------------------------------------
 ------------------------------------------------------------17. INSERT INTO---------------------------------------------------------------
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Shimano Elétrica Force Master', 'Carretilha', 'Shimano', 5600.00, 6999.00,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'Carretilha Shimano Elétrica Force Master', 'Carretilha', 'Shimano', 5600.00, 6999.00,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha'), tp_nt_restricao (tp_restricao ('Apenas Cartão'))));
 
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Carretilha Vizel 12000 8.1:1 Drag 8kg Saint Plus - Manivela Esquerda', 'Carretilha', 'Vizel', 440.00, 549.00,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'Carretilha Vizel 12000 8.1:1 Drag 8kg Saint Plus - Manivela Esquerda', 'Carretilha', 'Vizel', 440.00, 549.00,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Carretilha'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
 
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Vara Saint Challenge 4203-SP 100-200gr', 'Vara', 'Saint Challenge', 1359.00, 1698.00,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'Vara Saint Challenge 4203-SP 100-200gr', 'Vara', 'Saint Challenge', 1359.00, 1698.00,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Vara'), tp_nt_restricao (tp_restricao ('Apenas Cartão'))));
 
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'MOLINETE OKUMA TRIO REX SURF TXSU-60', 'Molinete', 'Okuma', 584.00, 729.00,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'MOLINETE OKUMA TRIO REX SURF TXSU-60', 'Molinete', 'Okuma', 584.00, 729.00,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Molinete'), tp_nt_restricao (tp_restricao ('Apenas Cartão'))));
 
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'BARRACA ECHO LIFE EASY 6P AUTOMATICA BA0014', 'Camping', 'Echo life', 392.00, 489.00,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'BARRACA ECHO LIFE EASY 6P AUTOMATICA BA0014', 'Camping', 'Echo life', 392.00, 489.00,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
 
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'BOLSA AF17-0109 black mochila c/3 estojos', 'Camping', 'Albatroz Fishing', 470.00, 586.60,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'BOLSA AF17-0109 black mochila c/3 estojos', 'Camping', 'Albatroz Fishing', 470.00, 586.60,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Camping'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
 
 INSERT INTO tb_produto_especial
-VALUES  (tp_produto_especial (PRODUTO_ID_SEQ.NEXTVAL, 'Conjunto Pesca de Praia e Costeira - Vara + Molinete', 'Kits', 'Tacom', 352.00, 439.00,
+VALUES  (tp_produto_especial (PRODUTO_ESP_ID_SEQ.NEXTVAL, 'Conjunto Pesca de Praia e Costeira - Vara + Molinete', 'Kits', 'Tacom', 352.00, 439.00,
         (SELECT id_pessoa FROM tb_estoquista te, TABLE (te.setor) T WHERE T.setor = 'Kits'), tp_nt_restricao (tp_restricao ('Não aceita cheque'))));
 
 ------------------------------------------------------------INSERTS FORNECEDOR------------------------------------------------------------
@@ -568,6 +571,167 @@ INSERT INTO tb_dependente
 VALUES  (tp_dependente (DEPENDENTE_ID_SEQ.NEXTVAL, 20, '009.284.573-24', 'Cecilia Mariana', 'Feminino',
         TO_DATE ('07/09/1991', 'DD/MM/YYYY'), varray_telefone (tp_telefone ('9 9437-4861'))));
 
+------------------------------------------------------------INSERTS FORNECE---------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 1),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 1),
+        TO_TIMESTAMP('2012-04-23 06:03:23', 'YYYY-MM-DD HH24:MI:SS')));
 
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 2),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 2),
+        TO_TIMESTAMP('2013-01-05 23:14:44', 'YYYY-MM-DD HH24:MI:SS')));
 
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 3),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 3),
+        TO_TIMESTAMP('2016-08-23 17:44:38', 'YYYY-MM-DD HH24:MI:SS')));
 
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 4),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 4),
+        TO_TIMESTAMP('2000-08-14 22:42:58', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 5),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 5),
+        TO_TIMESTAMP('2004-08-18 12:15:41', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 6),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 6),
+        TO_TIMESTAMP('2009-06-06 09:00:00', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 7),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 7),
+        TO_TIMESTAMP('2018-11-16 18:50:49', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 8),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 8),
+        TO_TIMESTAMP('2017-10-30 17:59:11', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 9),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 9),
+        TO_TIMESTAMP('2011-02-28 14:13:12', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 10),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 10),
+        TO_TIMESTAMP('2010-03-18 19:43:56', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 11),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 11),
+        TO_TIMESTAMP('2004-04-29 20:09:18', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 12),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 12),
+        TO_TIMESTAMP('2016-07-04 13:19:55', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 13),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 13),
+        TO_TIMESTAMP('2006-05-12 15:49:43', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 14),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 14),
+        TO_TIMESTAMP('2007-09-07 01:04:09', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 15),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 15),
+        TO_TIMESTAMP('2008-12-15 04:28:58', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 16),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 16),
+        TO_TIMESTAMP('2001-01-31 08:51:21', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 17),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 17),
+        TO_TIMESTAMP('2000-02-19 23:19:34', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 18),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 18),
+        TO_TIMESTAMP('2019-01-19 19:10:09', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 19),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 19),
+        TO_TIMESTAMP('2011-09-30 06:18:30', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_fornece
+VALUES  (tp_fornece ((SELECT REF (P) FROM tb_produto P WHERE P.codigo = 20),
+        (SELECT REF(F) FROM tb_fornecedor F, tb_produto P WHERE F.nome_fantasia = P.fabricante AND P.codigo = 20),
+        TO_TIMESTAMP('2014-06-06 18:12:04', 'YYYY-MM-DD HH24:MI:SS')));
+
+------------------------------------------------------------INSERTS VENDA_ESPECIAL--------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 1),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 1)));
+
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 2),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 2)));
+
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 3),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 3)));
+
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 4),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 4)));
+
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 5),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 5)));
+
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 6),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 6)));
+
+INSERT INTO tb_venda_especial
+VALUES  (tp_venda_especial ((SELECT REF (V) FROM tb_vendedor V WHERE V.id_pessoa = 1),
+        (SELECT REF (PE) FROM tb_produto_especial PE WHERE PE.codigo = 7)));
+
+------------------------------------------------------------INSERTS COMPRA_ESPECIAL-------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 1),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 1), TO_TIMESTAMP('2010-04-15 15:00:00', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 2),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 3), TO_TIMESTAMP('2014-09-10 16:42:00', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 3),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 5), TO_TIMESTAMP('2001-12-25 23:59:59', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 4),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 7), TO_TIMESTAMP('2015-03-22 18:53:20', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 5),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 6), TO_TIMESTAMP('2005-11-07 19:41:09', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 6),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 4), TO_TIMESTAMP('2012-01-02 01:01:15', 'YYYY-MM-DD HH24:MI:SS')));
+
+INSERT INTO tb_compra_especial
+VALUES  (tp_compra_especial ((SELECT REF (VE) FROM tb_venda_especial VE WHERE DEREF (VE.produto_especial).codigo = 7),
+        (SELECT REF (C) FROM tb_cliente C WHERE C.id_pessoa = 2), TO_TIMESTAMP('2018-09-30 00:13:07', 'YYYY-MM-DD HH24:MI:SS')));
+
+------------------------------------------------------------INSERTS COMPRA----------------------------------------------------------------
+------------------------------------------------------------17. INSERT INTO & 18. SELECT REF----------------------------------------------

@@ -226,3 +226,31 @@ CREATE OR REPLACE TYPE tp_dependente FORCE AS OBJECT (
     telefone                      varray_telefone
 ) FINAL;
 /
+
+CREATE OR REPLACE TYPE tp_fornece FORCE AS OBJECT (
+    produto                       REF tp_produto,
+    fornecedor                    REF tp_fornecedor,
+    data_hora					  TIMESTAMP
+) FINAL;
+/
+
+CREATE OR REPLACE TYPE tp_venda_especial FORCE AS OBJECT (
+    vendedor                      REF tp_vendedor,
+    produto_especial              REF tp_produto_especial
+);
+/
+
+CREATE OR REPLACE TYPE tp_compra_especial FORCE AS OBJECT (
+    venda_especial				REF tp_venda_especial,
+    cliente					    REF tp_cliente,
+    data_hora					TIMESTAMP
+);
+/
+
+CREATE OR REPLACE TYPE tp_compra FORCE AS OBJECT (
+    produto                     REF tp_produto,
+    cliente					    REF tp_cliente,
+    vendedor					REF tp_vendedor,
+    data_hora                   TIMESTAMP
+);
+/

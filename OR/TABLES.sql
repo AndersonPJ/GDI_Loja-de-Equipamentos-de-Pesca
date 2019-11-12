@@ -53,3 +53,31 @@ CREATE TABLE tb_dependente OF tp_dependente (
 );
 /
 
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_fornece OF tp_fornece (
+    produto                     WITH ROWID REFERENCES tb_produto,
+    fornecedor				    WITH ROWID REFERENCES tb_fornecedor
+);
+/
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_venda_especial OF tp_venda_especial (
+    vendedor					WITH ROWID REFERENCES tb_vendedor,
+    produto_especial		    WITH ROWID REFERENCES tb_produto_especial
+);
+/
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_compra_especial OF tp_compra_especial (
+    venda_especial				WITH ROWID REFERENCES tb_venda_especial,
+    cliente					    WITH ROWID REFERENCES tb_cliente
+);
+/
+
+------------------------------------------------------------13. CREATE TABLE OF-----------------------------------------------------------
+CREATE TABLE tb_compra OF tp_compra (
+    produto                     WITH ROWID REFERENCES tb_produto,
+    cliente					    WITH ROWID REFERENCES tb_cliente,
+    vendedor					WITH ROWID REFERENCES tb_vendedor
+);
+/
